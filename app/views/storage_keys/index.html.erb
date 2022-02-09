@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Storage Keys</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Storage key</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @storage_keys.each do |storage_key| %>
+      <tr>
+        <td><%= storage_key.storage_key_id %></td>
+        <td><%= storage_key.user_id %></td>
+        <td><%= link_to 'Show', storage_key %></td>
+        <td><%= link_to 'Edit', edit_storage_key_path(storage_key) %></td>
+        <td><%= link_to 'Destroy', storage_key, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Storage Key', new_storage_key_path %>

@@ -1,0 +1,2 @@
+class StorageKey < ApplicationRecord
+end

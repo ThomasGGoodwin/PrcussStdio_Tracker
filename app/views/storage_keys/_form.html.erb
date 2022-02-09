@@ -1,0 +1,27 @@
+<%= form_with(model: storage_key) do |form| %>
+  <% if storage_key.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(storage_key.errors.count, "error") %> prohibited this storage_key from being saved:</h2>
+
+      <ul>
+        <% storage_key.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :storage_key_id %>
+    <%= form.number_field :storage_key_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.number_field :user_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
