@@ -26,19 +26,16 @@ ActiveRecord::Schema.define(version: 2022_02_11_184224) do
   end
 
   create_table "event_types", force: :cascade do |t|
-    t.integer "event_type"
     t.string "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "events", force: :cascade do |t|
-    t.integer "event_id"
     t.integer "event_type"
     t.string "name"
-    t.date "data"
-    t.time "start_time"
-    t.time "end_time"
+    t.datetime "start_time"
+    t.datetime "end_time"
     t.string "location"
     t.string "description"
     t.datetime "created_at", precision: 6, null: false
