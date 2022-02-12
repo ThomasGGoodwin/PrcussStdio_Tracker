@@ -43,7 +43,6 @@ ActiveRecord::Schema.define(version: 2022_02_11_184224) do
   end
 
   create_table "roles", force: :cascade do |t|
-    t.integer "role_id"
     t.string "role_description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -58,14 +57,12 @@ ActiveRecord::Schema.define(version: 2022_02_11_184224) do
   end
 
   create_table "storage_keys", force: :cascade do |t|
-    t.integer "storage_key_id"
     t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|
-    t.integer "user_id"
     t.string "first_name"
     t.string "last_name"
     t.string "email"
