@@ -1,24 +1,30 @@
-# README
+# PrcussStdio_Tracker
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## For Developers
 
-Things you may want to cover:
+### Running on local machine
 
-* Ruby version
+#### Steps
+```
+Windows:
+Loging to Docker:
+docker run --rm -it --volume "${PWD}:/csce431" -e DATABASE_USER=test_app -e DATABASE_PASSWORD=test_password -p 3000:3000 dmartinez05/ruby_rails_postgresql:latest
 
-* System dependencies
+Run 'bundle install': bundle install
+Create Databases: rails db:create
+Migrate Databases: rails db:migrate
 
-* Configuration
+Mac:
 
-* Database creation
+```
 
-* Database initialization
+#### To Run
+```
+rails s --binding=0.0.0.0
+```
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+#### To Test
+```
+rails g rspec:install
+rspec spec/feature/(filename).rb
+```
