@@ -30,6 +30,7 @@ gem 'simple_calendar', '~> 2.4'
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'rexml'
 
+# Google OAuth
 gem 'devise'
 gem 'omniauth', '~>1.9'
 gem 'omniauth-google-oauth2'
