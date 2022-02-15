@@ -57,4 +57,7 @@ Rails.application.configure do
 
   # Annotate rendered view with file names.
   # config.action_view.annotate_rendered_view_with_filenames = true
+
+  ENV["devise.mapping"] = Devise.mappings[:user]
+  ENV["omniauth.auth"]  = OmniAuth.config.mock_auth[:google_oauth2]
 end
