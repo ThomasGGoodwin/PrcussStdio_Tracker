@@ -12,11 +12,6 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :event_id %>
-    <%= form.number_field :event_id %>
-  </div>
-
-  <div class="field">
     <%= form.label :event_type %>
     <%= form.number_field :event_type %>
   </div>
@@ -27,18 +22,13 @@
   </div>
 
   <div class="field">
-    <%= form.label :data %>
-    <%= form.date_select :data %>
-  </div>
-
-  <div class="field">
     <%= form.label :start_time %>
-    <%= form.time_select :start_time %>
+    <%= form.datetime_select :start_time %>
   </div>
 
   <div class="field">
     <%= form.label :end_time %>
-    <%= form.time_select :end_time %>
+    <%= form.datetime_select :end_time %>
   </div>
 
   <div class="field">

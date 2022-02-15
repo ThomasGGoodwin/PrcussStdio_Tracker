@@ -65,6 +65,6 @@ class StorageKeysController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def storage_key_params
-      params.require(:storage_key).permit(:storage_key_id, :user_id)
+      params.require(:storage_key).permit(:user_id)
     end
 end

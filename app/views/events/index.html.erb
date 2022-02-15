@@ -5,10 +5,8 @@
 <table>
   <thead>
     <tr>
-      <th>Event</th>
       <th>Event type</th>
       <th>Name</th>
-      <th>Data</th>
       <th>Start time</th>
       <th>End time</th>
       <th>Location</th>
@@ -20,10 +18,8 @@
   <tbody>
     <% @events.each do |event| %>
       <tr>
-        <td><%= event.event_id %></td>
         <td><%= event.event_type %></td>
         <td><%= event.name %></td>
-        <td><%= event.data %></td>
         <td><%= event.start_time %></td>
         <td><%= event.end_time %></td>
         <td><%= event.location %></td>
@@ -39,3 +35,15 @@
 <br>
 
 <%= link_to 'New Event', new_event_path %>
+
+<br><br>
+
+<%= month_calendar(attribute: :start_time, events: @events) do |date, events| %>
+  <%= date.day %>
+
+  <% events.each do |event| %>
+    <div>
+      <%= event.name %>
+    </div>
+  <% end %>
+<% end %>
