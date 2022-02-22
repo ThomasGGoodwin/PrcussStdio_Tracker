@@ -1,6 +1,24 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Events</h1>
+<br>
+
+<%= link_to 'New Event', new_event_path %>
+
+<br><br>
+
+<%= month_calendar(attribute: :start_time, events: @events) do |date, events| %>
+  <%= date.day %>
+
+  <% events.each do |event| %>
+    <div>
+      <%= event.name %>
+    </div>
+  <% end %>
+<% end %>
+
+<br>
+
+<h2>Upcoming Events</h2>
 
 <table>
   <thead>
@@ -24,6 +42,7 @@
         <td><%= event.end_time %></td>
         <td><%= event.location %></td>
         <td><%= event.description %></td>
+        <td><%= link_to 'Sign Up', new_sign_in_path(:sign_in => { :user_id => current_admin.uid, :event_id => event.id, :signin_time => event.start_time }) %></td>
         <td><%= link_to 'Show', event %></td>
         <td><%= link_to 'Edit', edit_event_path(event) %></td>
         <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -34,19 +53,4 @@
 
 <br>
 
-<%= link_to 'New Event', new_event_path %>
-
-<br><br>
-
-<%= month_calendar(attribute: :start_time, events: @events) do |date, events| %>
-  <%= date.day %>
-
-  <% events.each do |event| %>
-    <div>
-      <%= event.name %>
-    </div>
-  <% end %>
-<% end %>
-
-<br>
 <%= link_to 'Back', root_url %>

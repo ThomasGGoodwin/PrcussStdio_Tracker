@@ -12,7 +12,7 @@ class SignInsController < ApplicationController
 
   # GET /sign_ins/new
   def new
-    @sign_in = SignIn.new
+    @sign_in = SignIn.new(sign_in_params)
   end
 
   # GET /sign_ins/1/edit
