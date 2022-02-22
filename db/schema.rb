@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(version: 2022_02_11_184224) do
     t.integer "event_id"
     t.datetime "signin_time"
     t.boolean "attending"
+    t.string "reason"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

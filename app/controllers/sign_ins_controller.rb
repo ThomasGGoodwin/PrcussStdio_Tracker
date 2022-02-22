@@ -65,6 +65,6 @@ class SignInsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def sign_in_params
-      params.require(:sign_in).permit(:user_id, :event_id, :signin_time, :attending)
+      params.require(:sign_in).permit(:user_id, :event_id, :signin_time, :attending, :reason)
     end
 end
