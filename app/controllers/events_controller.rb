@@ -4,8 +4,8 @@ class EventsController < ApplicationController
   # GET /events or /events.json
   def index
     @events = Event.all
-    @upcoming_events = Event.where("end_time < ?", DateTime.now.utc) || [] 
-    @past_events = Event.where("end_time >= ?", DateTime.now.utc) || []
+    @upcoming_events = Event.where("end_time > ?", DateTime.now) || [] 
+    @past_events = Event.where("end_time <= ?", DateTime.now) || []
   end
 
   # GET /events/1 or /events/1.json
