@@ -34,7 +34,7 @@
   </thead>
 
   <tbody>
-    <% @events.each do |event| %>
+    <% @upcoming_events.each do |event| %>
       <tr>
         <td><%= event.event_type %></td>
         <td><%= event.name %></td>
@@ -43,6 +43,40 @@
         <td><%= event.location %></td>
         <td><%= event.description %></td>
         <td><%= link_to 'Sign Up', new_sign_in_path(:sign_in => { :user_id => current_admin.uid, :event_id => event.id, :signin_time => event.start_time }) %></td>
+        <td><%= link_to 'Show', event %></td>
+        <td><%= link_to 'Edit', edit_event_path(event) %></td>
+        <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<h2>Past Events</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Event type</th>
+      <th>Name</th>
+      <th>Start time</th>
+      <th>End time</th>
+      <th>Location</th>
+      <th>Description</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @past_events.each do |event| %>
+      <tr>
+        <td><%= event.event_type %></td>
+        <td><%= event.name %></td>
+        <td><%= event.start_time %></td>
+        <td><%= event.end_time %></td>
+        <td><%= event.location %></td>
+        <td><%= event.description %></td>
         <td><%= link_to 'Show', event %></td>
         <td><%= link_to 'Edit', edit_event_path(event) %></td>
         <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
