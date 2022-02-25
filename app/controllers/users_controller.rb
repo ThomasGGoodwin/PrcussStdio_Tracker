@@ -57,6 +57,11 @@ class UsersController < ApplicationController
     end
   end
 
+  #attendance report /users/attendance_report
+  def attendance_report
+    @users = User.all
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user

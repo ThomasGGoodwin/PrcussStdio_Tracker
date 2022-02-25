@@ -1,0 +1,32 @@
+<h1>Attendance Report</h2>
+
+#shows list of members and their corresponding attendance credits
+#range of dates would either be chosen or hard coded
+#attendance credits need to be implemented.
+
+#attendance table
+<table>
+  <thead>
+    <tr>
+      <th>User ID</th>
+      <th>First name</th>
+      <th>Last name</th>
+      <th>Attendance Credits</th>
+      <th>Requirement Met?</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.id %></td>
+        <td><%= user.first_name %></td>
+        <td><%= user.last_name %></td>
+        <td>2</td>
+        <td>'No'</td>
+        <td><%= link_to 'Show', user %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
