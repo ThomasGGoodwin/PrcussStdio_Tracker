@@ -39,8 +39,8 @@ jobs:
           cmd: install
       - name: Run tests
         run: bundler exec rspec .
-      # - name: Run brakeman
-      #   run: brakeman -q -o brakeman.txt
+      - name: Run brakeman
+        run: brakeman -q --no-exit-on-warn -o brakeman.txt
       - name: Run rubocop
         run: bundler exec rubocop --fail-level error --out rubocop.txt
       - name: Upload coverage results
