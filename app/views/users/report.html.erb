@@ -1,10 +1,6 @@
 <h1>Attendance Report</h2>
 
-#shows list of members and their corresponding attendance credits
-#range of dates would either be chosen or hard coded
-#attendance credits need to be implemented.
-
-#attendance table
+# attendance report
 <table>
   <thead>
     <tr>
@@ -17,6 +13,7 @@
     </tr>
   </thead>
 
+  <% if User.any? %>
   <tbody>
     <% @users.each do |user| %>
       <tr>
@@ -29,4 +26,7 @@
       </tr>
     <% end %>
   </tbody>
+  <% else %>
+  <h2>There are currently no users in the table!</h2>
+  <% end %>
 </table>
