@@ -37,7 +37,7 @@ class SignInsController < ApplicationController
   # PATCH/PUT /sign_ins/1 or /sign_ins/1.json
   def update
     respond_to do |format|
-      if @sign_in.update(sign_in_params)
+      if @sign_in.update(sign_in_params) && valid_reason?
         format.html { redirect_to sign_in_url(@sign_in), notice: "Sign in was successfully updated." }
         format.json { render :show, status: :ok, location: @sign_in }
       else
@@ -66,5 +66,17 @@ class SignInsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def sign_in_params
       params.require(:sign_in).permit(:user_id, :event_id, :signin_time, :attending, :reason)
+    end
+
+    # When not attending require a reason to be filled in the box
+    def valid_reason?
+      if subject.attending == true
+        return true
+      end
+      if subject.reason.empty?
+        return false
+      else
+        return true
+      end
     end
 end
