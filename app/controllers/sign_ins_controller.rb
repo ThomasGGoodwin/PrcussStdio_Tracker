@@ -73,10 +73,6 @@ class SignInsController < ApplicationController
       if subject.attending == true
         return true
       end
-      if subject.reason.empty?
-        return false
-      else
-        return true
-      end
+      return !subject.reason.empty?
     end
 end

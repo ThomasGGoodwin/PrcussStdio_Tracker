@@ -41,7 +41,7 @@ RSpec.describe SignIn, type: :model do
   
     it 'is not valid without specifying attendance' do
       subject.attending = nil
-      expect(subject).not_to be_valid
+      expect(subject).to be_valid
     end
   end
 
