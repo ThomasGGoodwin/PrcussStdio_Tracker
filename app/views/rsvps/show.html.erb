@@ -2,28 +2,28 @@
 
 <p>
   <strong>User:</strong>
-  <%= @sign_in.user_id %>
+  <%= @rsvp.user_id %>
 </p>
 
 <p>
   <strong>Event:</strong>
-  <%= @sign_in.event_id %>
+  <%= @rsvp.event_id %>
 </p>
 
 <p>
   <strong>Signin time:</strong>
-  <%= @sign_in.signin_time %>
+  <%= @rsvp.rsvp_time %>
 </p>
 
 <p>
   <strong>Attending:</strong>
-  <%= @sign_in.attending %>
+  <%= @rsvp.attending %>
 </p>
 
 <p>
   <strong>Reason for not attending:</strong>
-  <%= @sign_in.reason %>
+  <%= @rsvp.reason %>
 </p>
 
-<%= link_to 'Edit', edit_sign_in_path(@sign_in) %> |
-<%= link_to 'Back', sign_ins_path %>
+<%= link_to 'Edit', edit_rsvp_path(@rsvp) %> |
+<%= link_to 'Back', rsvps_path %>

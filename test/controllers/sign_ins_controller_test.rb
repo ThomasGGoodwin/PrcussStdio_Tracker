@@ -1,48 +1,48 @@
 require "test_helper"
 
-class SignInsControllerTest < ActionDispatch::IntegrationTest
+class RsvpsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @sign_in = sign_ins(:one)
+    @rsvp = rsvps(:one)
   end
 
   test "should get index" do
-    get sign_ins_url
+    get rsvps_url
     assert_response :success
   end
 
   test "should get new" do
-    get new_sign_in_url
+    get new_rsvp_url
     assert_response :success
   end
 
-  test "should create sign_in" do
-    assert_difference('SignIn.count') do
-      post sign_ins_url, params: { sign_in: { event_id: @sign_in.event_id, signin_time: @sign_in.signin_time, user_id: @sign_in.user_id } }
+  test "should create rsvp" do
+    assert_difference('Rsvp.count') do
+      post rsvps_url, params: { rsvp: { event_id: @rsvp.event_id, rsvp_time: @rsvp.rsvp_time, user_id: @rsvp.user_id } }
     end
 
-    assert_redirected_to sign_in_url(SignIn.last)
+    assert_redirected_to rsvp_url(Rsvp.last)
   end
 
-  test "should show sign_in" do
-    get sign_in_url(@sign_in)
+  test "should show rsvp" do
+    get rsvp_url(@rsvp)
     assert_response :success
   end
 
   test "should get edit" do
-    get edit_sign_in_url(@sign_in)
+    get edit_rsvp_url(@rsvp)
     assert_response :success
   end
 
-  test "should update sign_in" do
-    patch sign_in_url(@sign_in), params: { sign_in: { event_id: @sign_in.event_id, signin_time: @sign_in.signin_time, user_id: @sign_in.user_id } }
-    assert_redirected_to sign_in_url(@sign_in)
+  test "should update rsvp" do
+    patch rsvp_url(@rsvp), params: { rsvp: { event_id: @rsvp.event_id, rsvp_time: @rsvp.rsvp_time, user_id: @rsvp.user_id } }
+    assert_redirected_to rsvp_url(@rsvp)
   end
 
-  test "should destroy sign_in" do
-    assert_difference('SignIn.count', -1) do
-      delete sign_in_url(@sign_in)
+  test "should destroy rsvp" do
+    assert_difference('Rsvp.count', -1) do
+      delete rsvp_url(@rsvp)
     end
 
-    assert_redirected_to sign_ins_url
+    assert_redirected_to rsvps_url
   end
 end
