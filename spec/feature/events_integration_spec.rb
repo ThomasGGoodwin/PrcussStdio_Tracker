@@ -131,3 +131,67 @@ RSpec.describe 'Deleting an event', type: :feature do
     expect(page).to have_no_content('DescriptionTest')
   end
 end
+
+RSpec.describe 'RSVP button toggle', type: :feature do
+  scenario 'has not rsvp\'d' do
+    # Login to Google
+    visit '/admins/auth/google_oauth2'
+
+    # Create new event
+    visit new_event_path
+    fill_in 'Event type', with: 1
+    fill_in 'Name', with: 'EventTest'
+    select '2022', :from => 'event_start_time_1i'
+    select 'February', :from => 'event_start_time_2i'
+    select '17', :from => 'event_start_time_3i'
+    select '20', :from => 'event_start_time_4i'
+    select '19', :from => 'event_start_time_5i'
+    select '2023', :from => 'event_end_time_1i'
+    select 'April', :from => 'event_end_time_2i'
+    select '14', :from => 'event_end_time_3i'
+    select '01', :from => 'event_end_time_4i'
+    select '00', :from => 'event_end_time_5i'
+    fill_in 'Location', with: 'LocationTest'
+    fill_in 'Description', with: 'DescriptionTest'
+    click_on 'Create Event'
+
+    # Check event for rsvp button
+    visit events_path
+    expect(page).to have_content('RSVP')
+    expect(page).to have_no_content('Change Status')
+  end
+
+  scenario 'has rsvp\'d' do
+    # Login to Google
+    visit '/admins/auth/google_oauth2'
+
+    # Create new event
+    visit new_event_path
+    fill_in 'Event type', with: 1
+    fill_in 'Name', with: 'EventTest'
+    select '2022', :from => 'event_start_time_1i'
+    select 'February', :from => 'event_start_time_2i'
+    select '17', :from => 'event_start_time_3i'
+    select '20', :from => 'event_start_time_4i'
+    select '19', :from => 'event_start_time_5i'
+    select '2023', :from => 'event_end_time_1i'
+    select 'April', :from => 'event_end_time_2i'
+    select '14', :from => 'event_end_time_3i'
+    select '01', :from => 'event_end_time_4i'
+    select '00', :from => 'event_end_time_5i'
+    fill_in 'Location', with: 'LocationTest'
+    fill_in 'Description', with: 'DescriptionTest'
+    click_on 'Create Event'
+
+    # RSVP
+    visit events_path
+    click_on 'RSVP'
+    check('rsvp_attending', allow_label_click: true)
+    click_on 'Create Rsvp'
+
+    # Check event for rsvp button
+    visit events_path
+    expect(page).to have_content('Change Status')
+    expect(page).to have_no_content('RSVP')
+  end
+end
