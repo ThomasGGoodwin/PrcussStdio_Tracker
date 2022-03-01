@@ -70,9 +70,9 @@ class RsvpsController < ApplicationController
 
     # When not attending require a reason to be filled in the box
     def valid_reason?
-      if subject.attending == true
+      if @rsvp.attending == true
         return true
       end
-      return !subject.reason.empty?
+      return !@rsvp.reason.empty?
     end
 end
