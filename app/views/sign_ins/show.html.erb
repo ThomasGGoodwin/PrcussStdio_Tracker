@@ -15,5 +15,15 @@
   <%= @sign_in.signin_time %>
 </p>
 
+<p>
+  <strong>Attending:</strong>
+  <%= @sign_in.attending %>
+</p>
+
+<p>
+  <strong>Reason for not attending:</strong>
+  <%= @sign_in.reason %>
+</p>
+
 <%= link_to 'Edit', edit_sign_in_path(@sign_in) %> |
 <%= link_to 'Back', sign_ins_path %>

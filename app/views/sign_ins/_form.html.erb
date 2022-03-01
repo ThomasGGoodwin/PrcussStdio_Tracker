@@ -23,6 +23,16 @@
     <%= form.hidden_field :signin_time %>
   </div>
 
+  <div class="field">
+    <%= form.label :attending %>
+    <%= form.check_box :attending %>
+  </div>
+
+  <div class="field">
+    <%= form.label :reason %>
+    <%= form.text_area :reason %>
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>
