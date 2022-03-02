@@ -3,9 +3,9 @@
 one:
   user_id: 1
   event_id: 1
-  signin_time: 2022-02-09 17:02:00
+  rsvp_time: 2022-02-09 17:02:00
 
 two:
   user_id: 1
   event_id: 1
-  signin_time: 2022-02-09 17:02:00
+  rsvp_time: 2022-02-09 17:02:00

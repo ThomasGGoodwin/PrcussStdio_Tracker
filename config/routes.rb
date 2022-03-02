@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   resources :roles
   resources :storage_keys
   resources :event_types
-  resources :sign_ins
+  resources :rsvps
   resources :users
   resources :events
 
