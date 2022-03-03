@@ -6,10 +6,12 @@ class EventsController < ApplicationController
     @events = Event.all
     @upcoming_events = Event.where("end_time > ?", DateTime.now) || [] 
     @past_events = Event.where("end_time <= ?", DateTime.now) || []
+    #@event_type_description = EventType.where(id: @event.event_type).limit(1).pluck(:description).first()
   end
 
   # GET /events/1 or /events/1.json
   def show
+    #@event_type_description = EventType.where(id: @event.event_type).limit(1).pluck(:description).first()
   end
 
   # GET /events/new
