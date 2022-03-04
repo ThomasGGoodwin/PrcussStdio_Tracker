@@ -36,7 +36,7 @@
   <tbody>
     <% @upcoming_events.each do |event| %>
       <tr>
-        <td><%= event_type_description = EventType.where(id: event.event_type).limit(1).pluck(:description).first() %></td>
+        <td><%= EventType.where(id: event.event_type).limit(1).pluck(:description).first() %></td>
         <td><%= event.name %></td>
         <td><%= event.start_time %></td>
         <td><%= event.end_time %></td>
@@ -71,7 +71,7 @@
   <tbody>
     <% @past_events.each do |event| %>
       <tr>
-        <td><%= event_type_description = EventType.where(id: event.event_type).limit(1).pluck(:description).first() %></td>
+        <td><%= EventType.where(id: event.event_type).limit(1).pluck(:description).first() %></td>
         <td><%= event.name %></td>
         <td><%= event.start_time %></td>
         <td><%= event.end_time %></td>

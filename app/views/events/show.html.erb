@@ -2,7 +2,7 @@
 
 <p>
   <strong>Event type:</strong>
-  <%= event_type_description = EventType.where(id: @event.event_type).limit(1).pluck(:description).first() %> 
+  <%= EventType.where(id: @event.event_type).limit(1).pluck(:description).first() %> 
 </p>
 
 <p>

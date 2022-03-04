@@ -1,4 +1,8 @@
 class Event < ApplicationRecord
+    #relationships
+    belongs_to :event_type
+    has_many :rsvp 
+
     validates :event_type, presence: true, allow_blank: false
     validates :name, presence: true, allow_blank: false
     validates :start_time, presence: true, allow_blank: false
