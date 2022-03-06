@@ -1,4 +1,4 @@
 class Role < ApplicationRecord
     #relationships 
-    has_many :user
+    has_many :users
 end

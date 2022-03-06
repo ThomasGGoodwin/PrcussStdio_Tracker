@@ -3,7 +3,7 @@ class Event < ApplicationRecord
     belongs_to :event_type
     has_many :rsvp 
 
-    validates :event_type, presence: true, allow_blank: false
+    validates :event_type_id, presence: true, allow_blank: false
     validates :name, presence: true, allow_blank: false
     validates :start_time, presence: true, allow_blank: false
     validates :end_time, presence: true, allow_blank: false

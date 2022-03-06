@@ -1,4 +1,4 @@
 class EventType < ApplicationRecord
     #relationships
-    has_many :event
+    has_many :events
 end
