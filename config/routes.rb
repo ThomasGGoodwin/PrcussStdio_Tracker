@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   end
 
   #attendance report route
-  get '/users/attendace_report', to: 'users#report', as: "attendance_report"
+  get '/users/attendance_report', to: 'users#report', as: "attendance_report"
 
   resources :roles
   resources :storage_keys
