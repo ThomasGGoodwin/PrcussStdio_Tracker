@@ -22,7 +22,7 @@
 
 <p>
   <strong>Role:</strong>
-  <%= @user.role %>
+  <%= Role.where(id: @user.role).last.role_description %>
 </p>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |

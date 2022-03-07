@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   # GET /users or /users.json
   def index
     @users = User.all
+    @users = User.order(:role)
   end
 
   # GET /users/1 or /users/1.json
