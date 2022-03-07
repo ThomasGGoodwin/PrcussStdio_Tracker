@@ -4,6 +4,7 @@ class DashboardsController < ApplicationController
   end
 
   #to get to member page
-  def member 
+  def member
+    @events = Event.all 
   end
 end
