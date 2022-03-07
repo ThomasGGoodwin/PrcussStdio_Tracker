@@ -3,7 +3,7 @@ class User < ApplicationRecord
     belongs_to :role 
     has_one :storage_key
     has_many :rsvps
-
+    
     validates :first_name, presence: true, allow_blank: false
     validates :last_name, presence: true, allow_blank: false
     validates :email, presence: true, allow_blank: false

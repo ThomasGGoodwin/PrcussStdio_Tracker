@@ -2,7 +2,6 @@
 require 'rails_helper'
 
 RSpec.describe 'Viewing the report with a created User', type: :feature do
-    
     #let!(:user) { User.create(first_name: 'Nassef', last_name: 'Ameen', email: 'nameen1@tamu.edu', role: 1)}
 
    scenario 'valid inputs' do
