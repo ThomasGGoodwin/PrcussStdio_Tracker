@@ -6,6 +6,14 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
+<style>
+.white{
+    color:white;
+    font-weight:bold;
+}
+</style>
+
+
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" href="#">Percussion Studio - Admin</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -14,26 +22,23 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-      </li>
       <li class="">
-        <%= link_to 'Event Types', event_types_path, class: 'nav-link'%>
+        <button type="button" class="btn btn-default navbar-btn"><%= link_to 'Event Types', event_types_path, class: 'nav-link'%></button>
       </li>
       <li class="nav-item">
-        <%= link_to 'Events', events_path, class: 'nav-link'%>
+        <button type="button" class="btn btn-default navbar-btn"><%= link_to 'Events', events_path, class: 'nav-link'%></button>
       </li>
       <li class="nav-item">
-        <%= link_to 'Roles', roles_path, class: 'nav-link'%>
+        <button type="button" class="btn btn-default navbar-btn"><%= link_to 'Roles', roles_path, class: 'nav-link'%></button>
       </li>
       <li class="nav-item">
-        <%= link_to 'Rsvps', rsvps_path, class: 'nav-link' %><br>
+        <button type="button" class="btn btn-default navbar-btn"><%= link_to 'Rsvps', rsvps_path, class: 'nav-link' %></button>
       </li>
       <li class="nav-item">
-        <%= link_to 'Storage Keys', storage_keys_path, class: 'nav-link'%>
+        <button type="button" class="btn btn-default navbar-btn"><%= link_to 'Storage Keys', storage_keys_path, class: 'nav-link'%>
       </li>
       <li class="nav-item">
-        <%= link_to 'Users', users_path, class: 'nav-link'%>
+        <button type="button" class="btn btn-default navbar-btn"><%= link_to 'Users', users_path, class: 'nav-link'%></button>
       </li>
       
     </ul>
@@ -44,20 +49,21 @@
   </div>
 </nav>
 
-<div class="jumbotron" id="includedContent">
+<div class="jumbotron" id="includedContent" style="background-color: #508bfc">
 <p id="notice"><%= notice %></p>
 
-<h1>Events</h1>
+<h1 class="white">Events</h1>
 
-<table>
+<div class="table-responsive">
+<table class="table">
   <thead>
     <tr>
-      <th>Event type</th>
-      <th>Name</th>
-      <th>Start time</th>
-      <th>End time</th>
-      <th>Location</th>
-      <th>Description</th>
+      <th class="white">Event type</th>
+      <th class="white">Name</th>
+      <th class="white">Start time</th>
+      <th class="white">End time</th>
+      <th class="white">Location</th>
+      <th class="white">Description</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -78,6 +84,7 @@
     <% end %>
   </tbody>
 </table>
+</div>
 
 <br>
 
@@ -85,6 +92,7 @@
 
 <br><br>
 
+<div class="jumbotron" style="background-color=white">
 <%= month_calendar(attribute: :start_time, events: @events) do |date, events| %>
   <%= date.day %>
 
@@ -94,8 +102,10 @@
     </div>
   <% end %>
 <% end %>
-
+</div>
 <br>
 <%= link_to 'Back', root_url %>
 
 </div>
+
+<%= link_to "Sign Out", destroy_admin_session_path %>
