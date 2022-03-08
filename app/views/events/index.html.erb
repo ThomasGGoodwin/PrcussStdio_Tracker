@@ -2,10 +2,6 @@
 
 <br>
 
-<%= link_to 'New Event', new_event_path %>
-
-<br><br>
-
 <%= month_calendar(attribute: :start_time, events: @events) do |date, events| %>
   <%= date.day %>
 
