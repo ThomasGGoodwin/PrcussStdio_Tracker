@@ -4,10 +4,14 @@ class EventsController < ApplicationController
   # GET /events or /events.json
   def index
     @events = Event.all
+    @upcoming_events = Event.where("end_time > ?", DateTime.now) || [] 
+    @past_events = Event.where("end_time <= ?", DateTime.now) || []
+    #@event_type_description = EventType.where(id: @event.event_type).limit(1).pluck(:description).first()
   end
 
   # GET /events/1 or /events/1.json
   def show
+    #@event_type_description = EventType.where(id: @event.event_type).limit(1).pluck(:description).first()
   end
 
   # GET /events/new
@@ -65,6 +69,6 @@ class EventsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def event_params
-      params.require(:event).permit(:event_type, :name, :start_time, :end_time, :location, :description)
+      params.require(:event).permit(:event_type_id, :name, :start_time, :end_time, :location, :description)
     end
 end

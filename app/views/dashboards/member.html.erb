@@ -1,4 +1,5 @@
 <h1>You're logged in! Welcome to the Member Dashboard!</h1>
+<h3>Welcome, <%= current_admin.full_name -%></h3>
 <%= link_to "calendar", events_path %>
 <br>
 <%= link_to "Sign Out", destroy_admin_session_path %>

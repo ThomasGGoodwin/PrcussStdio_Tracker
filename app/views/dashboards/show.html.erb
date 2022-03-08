@@ -1,10 +1,20 @@
-<h1>You're logged in! Welcome to the Admin Dashboard!</h1>
+<% if session[:user_role] == 'Admin' %>
+    <h3>Welcome admin, <%= current_admin.full_name -%></h3>
+    <%= link_to 'Event Types', event_types_path %><br>
+    <%= link_to 'Events', events_path %><br>
+    <%= link_to 'Roles', roles_path %><br>
+    <%= link_to 'Rsvps', rsvps_path %><br>
+    <%= link_to 'Storage Keys', storage_keys_path %><br>
+    <%= link_to 'Users', users_path %><br>
 
-<%= link_to 'Event Types', event_types_path %><br>
-<%= link_to 'Events', events_path %><br>
-<%= link_to 'Roles', roles_path %><br>
-<%= link_to 'Sign Ins', sign_ins_path %><br>
-<%= link_to 'Storage Keys', storage_keys_path %><br>
-<%= link_to 'Users', users_path %><br>
+    <%= link_to "Sign Out", destroy_admin_session_path %>
+<% elsif session[:user_role] == 'Member' %>
+    <h3>Welcome member, <%= current_admin.full_name -%></h3>
+    <%= link_to "calendar", events_path %><br>
 
-<%= link_to "Sign Out", destroy_admin_session_path %>
+    <%= link_to "Sign Out", destroy_admin_session_path %>
+<% else %>
+    <h3>You are not a member, <%= current_admin.full_name -%></h3>
+
+    <%= link_to "Back", destroy_admin_session_path %>
+<% end %>

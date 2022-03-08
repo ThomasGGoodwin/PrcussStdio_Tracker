@@ -7,10 +7,13 @@ Rails.application.routes.draw do
     get 'admins/sign_out', to: 'admins/sessions#destroy', as: :destroy_admin_session
   end
 
+  #attendance report route
+  get '/users/attendance_report', to: 'users#report', as: "attendance_report"
+
   resources :roles
   resources :storage_keys
   resources :event_types
-  resources :sign_ins
+  resources :rsvps
   resources :users
   resources :events
 
