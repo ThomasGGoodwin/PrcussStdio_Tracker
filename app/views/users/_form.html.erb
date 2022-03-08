@@ -26,10 +26,17 @@
     <%= form.text_field :email %>
   </div>
 
-  <% if User.where(role: Role.where(role_description: "Admin").first).count < 2 && Role.where(id: @user.role).last.role_description == "Admin" %>
-      <%= "Role" %><br>
-      <%= "Admin" %><br><br>
-      <%= "To change role, there must always be at least 2 Admin." %><br>
+  <% if @user.first_name != nil && @user.last_name != nil && @user.email != nil && @user.role != nil %>
+    <% if User.where(role: Role.where(role_description: "Admin").first).count < 2 && Role.where(id: @user.role).last.role_description == "Admin" %>
+        <%= "Role" %><br>
+        <%= "Admin" %><br><br>
+        <%= "To change role, there must always be at least 2 Admin." %><br>
+    <% else %>
+      <div class="field">
+        <%= form.label :role %>
+        <%= form.collection_select(:role, Role.all, :id, :role_description) %>
+      </div>
+    <% end %>
   <% else %>
     <div class="field">
       <%= form.label :role %>
