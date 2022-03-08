@@ -1,11 +1,6 @@
 Rails.application.routes.draw do
   root to: 'dashboards#show'
-<<<<<<< HEAD
-
-  get '/member', to: 'dashboards#set_roots'
-=======
   get '/member', to: 'dashboards#member'
->>>>>>> test
   devise_for :admins, controllers: { omniauth_callbacks: 'admins/omniauth_callbacks' }
   devise_scope :admin do
     get 'admins/sign_in', to: 'admins/sessions#new', as: :new_admin_session
