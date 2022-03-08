@@ -58,6 +58,11 @@ class UsersController < ApplicationController
     end
   end
 
+  #attendance report /users/attendance_report
+  def attendance_report
+    @users = User.all
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
@@ -66,6 +71,6 @@ class UsersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def user_params
-      params.require(:user).permit(:first_name, :last_name, :email, :role)
+      params.require(:user).permit(:first_name, :last_name, :email, :role_id)
     end
 end

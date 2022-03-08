@@ -1,6 +1,6 @@
 require "test_helper"
 
-class SignInTest < ActiveSupport::TestCase
+class RsvpTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

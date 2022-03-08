@@ -11,4 +11,8 @@ class DashboardsController < ApplicationController
   # to get to member page
   def member 
   end
+
+  #to get to member page
+  def member 
+  end
 end

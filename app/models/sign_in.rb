@@ -1,2 +1,0 @@
-class SignIn < ApplicationRecord
-end

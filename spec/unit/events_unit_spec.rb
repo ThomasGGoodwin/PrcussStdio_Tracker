@@ -3,7 +3,15 @@ require 'rails_helper'
 
 RSpec.describe Event, type: :model do
   subject do
+<<<<<<< HEAD
     described_class.new(event_type: 1, name: 'EventTest', start_time: '2022-02-17 01:01:00', end_time: '2022-02-17 02:01:00', location: 'LocationTest', description: 'DescriptionTest')
+=======
+    event_type = EventType.new
+    event_type.id = 1
+    event_type.description = 'EventTypeTest'
+    event_type.save
+    described_class.new(event_type_id: 1, name: 'EventTest', start_time: '2022-02-17 01:01:00', end_time: '2022-02-17 02:01:00', location: 'LocationTest', description: 'DescriptionTest')
+>>>>>>> test
   end
 
   it 'is valid with valid attributes' do
@@ -11,14 +19,26 @@ RSpec.describe Event, type: :model do
   end
 
   it 'is not valid without an event type' do
+<<<<<<< HEAD
     subject.event_type = nil
+=======
+    subject.event_type_id = nil
+>>>>>>> test
     expect(subject).not_to be_valid
   end
 end
 
 RSpec.describe Event, type: :model do
     subject do
+<<<<<<< HEAD
       described_class.new(event_type: 1, name: 'EventTest', start_time: '2022-02-17 01:01:00', end_time: '2022-02-17 02:01:00', location: 'LocationTest', description: 'DescriptionTest')
+=======
+      event_type = EventType.new
+      event_type.id = 1
+      event_type.description = 'EventTypeTest'
+      event_type.save
+      described_class.new(event_type_id: 1, name: 'EventTest', start_time: '2022-02-17 01:01:00', end_time: '2022-02-17 02:01:00', location: 'LocationTest', description: 'DescriptionTest')
+>>>>>>> test
     end
   
     it 'is valid with valid attributes' do
@@ -33,7 +53,15 @@ RSpec.describe Event, type: :model do
 
   RSpec.describe Event, type: :model do
     subject do
+<<<<<<< HEAD
       described_class.new(event_type: 1, name: 'EventTest', start_time: '2022-02-17 01:01:00', end_time: '2022-02-17 02:01:00', location: 'LocationTest', description: 'DescriptionTest')
+=======
+      event_type = EventType.new
+      event_type.id = 1
+      event_type.description = 'EventTypeTest'
+      event_type.save
+      described_class.new(event_type_id: 1, name: 'EventTest', start_time: '2022-02-17 01:01:00', end_time: '2022-02-17 02:01:00', location: 'LocationTest', description: 'DescriptionTest')
+>>>>>>> test
     end
   
     it 'is valid with valid attributes' do
@@ -48,7 +76,15 @@ RSpec.describe Event, type: :model do
 
   RSpec.describe Event, type: :model do
     subject do
+<<<<<<< HEAD
       described_class.new(event_type: 1, name: 'EventTest', start_time: '2022-02-17 01:01:00', end_time: '2022-02-17 02:01:00', location: 'LocationTest', description: 'DescriptionTest')
+=======
+      event_type = EventType.new
+      event_type.id = 1
+      event_type.description = 'EventTypeTest'
+      event_type.save
+      described_class.new(event_type_id: 1, name: 'EventTest', start_time: '2022-02-17 01:01:00', end_time: '2022-02-17 02:01:00', location: 'LocationTest', description: 'DescriptionTest')
+>>>>>>> test
     end
   
     it 'is valid with valid attributes' do
@@ -63,7 +99,15 @@ RSpec.describe Event, type: :model do
 
   RSpec.describe Event, type: :model do
     subject do
+<<<<<<< HEAD
       described_class.new(event_type: 1, name: 'EventTest', start_time: '2022-02-17 01:01:00', end_time: '2022-02-17 02:01:00', location: 'LocationTest', description: 'DescriptionTest')
+=======
+      event_type = EventType.new
+      event_type.id = 1
+      event_type.description = 'EventTypeTest'
+      event_type.save
+      described_class.new(event_type_id: 1, name: 'EventTest', start_time: '2022-02-17 01:01:00', end_time: '2022-02-17 02:01:00', location: 'LocationTest', description: 'DescriptionTest')
+>>>>>>> test
     end
   
     it 'is valid with valid attributes' do
@@ -78,7 +122,15 @@ RSpec.describe Event, type: :model do
 
   RSpec.describe Event, type: :model do
     subject do
+<<<<<<< HEAD
       described_class.new(event_type: 1, name: 'EventTest', start_time: '2022-02-17 01:01:00', end_time: '2022-02-17 02:01:00', location: 'LocationTest', description: 'DescriptionTest')
+=======
+      event_type = EventType.new
+      event_type.id = 1
+      event_type.description = 'EventTypeTest'
+      event_type.save
+      described_class.new(event_type_id: 1, name: 'EventTest', start_time: '2022-02-17 01:01:00', end_time: '2022-02-17 02:01:00', location: 'LocationTest', description: 'DescriptionTest')
+>>>>>>> test
     end
   
     it 'is valid with valid attributes' do

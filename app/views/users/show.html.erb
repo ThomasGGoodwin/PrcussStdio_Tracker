@@ -22,7 +22,11 @@
 
 <p>
   <strong>Role:</strong>
+<<<<<<< HEAD
   <%= Role.where(id: @user.role).last.role_description %>
+=======
+  <%= @user.role_id %>
+>>>>>>> test
 </p>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
