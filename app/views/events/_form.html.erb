@@ -13,7 +13,7 @@
 
   <div class="field">
     <%= form.label :event_type %>
-    <%= form.number_field :event_type %>
+    <%= form.collection_select(:event_type_id, EventType.all, :id, :description) %>
   </div>
 
   <div class="field">
@@ -38,7 +38,7 @@
 
   <div class="field">
     <%= form.label :description %>
-    <%= form.text_field :description %>
+    <%= form.text_field :description, placeholder: "Provide a description for the event", :class => 'textField' %>
   </div>
 
   <div class="actions">

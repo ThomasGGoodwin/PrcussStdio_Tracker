@@ -28,7 +28,7 @@
 
   <div class="field">
     <%= form.label :role %>
-    <%= form.number_field :role %>
+    <%= form.collection_select(:role_id, Role.all, :id, :role_description) %>
   </div>
 
   <div class="actions">
