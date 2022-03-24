@@ -2,6 +2,7 @@
 docker run --rm -it --volume "$(pwd):/csce431" -e DATABASE_USER=test_app -e DATABASE_PASSWORD=test_password -p 3000:3000 dmartinez05/ruby_rails_postgresql:latest
 #to run app
 bundle install && rails db:create && rails db:migrate
+rails db:seed
 rails server --binding=0.0.0.0
 #to view app go to localhost:3000
 #to run docker if port is already allocated
