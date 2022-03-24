@@ -112,9 +112,8 @@ a.a-primary:link, a.a-primary:visited {
   <% end %>
 <% end %>
 </div>
-<br>
-<%= link_to 'Back', root_url, class: "btn btn-primary a-primary" %>
+
+<%= link_to "Sign Out", destroy_admin_session_path, class: "btn btn-primary a-primary" %>
 
 </div>
 
-<%= link_to "Sign Out", destroy_admin_session_path %>
