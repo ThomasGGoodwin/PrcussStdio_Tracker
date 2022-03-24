@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   # GET /users or /users.json
   def index
     @users = User.all
+    @users = User.order(:role_id)
   end
 
   # GET /users/1 or /users/1.json
@@ -70,6 +71,6 @@ class UsersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def user_params
-      params.require(:user).permit(:first_name, :last_name, :email, :role)
+      params.require(:user).permit(:first_name, :last_name, :email, :role_id)
     end
 end

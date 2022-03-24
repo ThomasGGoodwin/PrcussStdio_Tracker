@@ -6,9 +6,14 @@ RSpec.describe 'Creating an event', type: :feature do
     # Login to Google
     visit '/admins/auth/google_oauth2'
 
+    #create new event_type
+    visit new_event_type_path
+    fill_in 'Description', with: 'EventTypeTest'
+    click_on 'Create Event type'
+
     # Create new event
     visit new_event_path
-    fill_in 'Event type', with: 1
+    select 'EventTypeTest', :from => 'event_event_type_id'
     fill_in 'Name', with: 'EventTest'
     select '2022', :from => 'event_start_time_1i'
     select 'February', :from => 'event_start_time_2i'
@@ -26,7 +31,7 @@ RSpec.describe 'Creating an event', type: :feature do
 
     # Check page for created event
     visit events_path
-    expect(page).to have_content('1')
+    expect(page).to have_content('EventTypeTest')
     expect(page).to have_content('EventTest')
     expect(page).to have_content('2022-02-17 20:19:00')
     expect(page).to have_content('2023-04-14 01:00:00')
@@ -37,16 +42,42 @@ end
 
 RSpec.describe 'Editing an event', type: :feature do
 
-  let!(:event) { Event.create(event_type: 1, name: 'EventTest', start_time: '2022-02-17 01:01:00', end_time: '2022-02-17 02:01:00', location: 'LocationTest', description: 'DescriptionTest') }
+  #let!(:event) { Event.create(event_type_id: 1, name: 'EventTest', start_time: '2022-02-17 01:01:00', end_time: '2022-02-17 02:01:00', location: 'LocationTest', description: 'DescriptionTest') }
 
   scenario 'valid inputs' do
     # Login to Google
     visit '/admins/auth/google_oauth2'
 
+    #create new event_types
+    visit new_event_type_path
+    fill_in 'Description', with: 'EventTypeTest'
+    click_on 'Create Event type'
+    visit new_event_type_path
+    fill_in 'Description', with: 'EventTypeTest2'
+    click_on 'Create Event type'
+
+    # Create new event
+    visit new_event_path
+    select 'EventTypeTest', :from => 'event_event_type_id'
+    fill_in 'Name', with: 'EventTest'
+    select '2022', :from => 'event_start_time_1i'
+    select 'March', :from => 'event_start_time_2i'
+    select '17', :from => 'event_start_time_3i'
+    select '20', :from => 'event_start_time_4i'
+    select '19', :from => 'event_start_time_5i'
+    select '2023', :from => 'event_end_time_1i'
+    select 'April', :from => 'event_end_time_2i'
+    select '14', :from => 'event_end_time_3i'
+    select '01', :from => 'event_end_time_4i'
+    select '00', :from => 'event_end_time_5i'
+    fill_in 'Location', with: 'LocationTest'
+    fill_in 'Description', with: 'DescriptionTest'
+    click_on 'Create Event'
+
     # Edit new event
     visit events_path
     click_on 'Edit'
-    fill_in 'Event type', with: 2
+    select 'EventTypeTest2', :from => 'event_event_type_id'
     fill_in 'Name', with: 'EventTest2'
     select '2023', :from => 'event_start_time_1i'
     select 'April', :from => 'event_start_time_2i'
@@ -64,7 +95,7 @@ RSpec.describe 'Editing an event', type: :feature do
 
     # Check page for created event
     visit events_path
-    expect(page).to have_content('2')
+    expect(page).to have_content('EventTypeTest2')
     expect(page).to have_content('EventTest2')
     expect(page).to have_content('2023-04-14 01:01:00')
     expect(page).to have_content('2021-02-17 00:01:00')
@@ -75,6 +106,32 @@ RSpec.describe 'Editing an event', type: :feature do
   scenario 'empty inputs' do
     # Login to Google
     visit '/admins/auth/google_oauth2'
+
+     #create new event_types
+     visit new_event_type_path
+     fill_in 'Description', with: 'EventTypeTest'
+     click_on 'Create Event type'
+     visit new_event_type_path
+     fill_in 'Description', with: 'EventTypeTest2'
+     click_on 'Create Event type'
+ 
+     # Create new event
+     visit new_event_path
+     select 'EventTypeTest', :from => 'event_event_type_id'
+     fill_in 'Name', with: 'EventTest'
+     select '2022', :from => 'event_start_time_1i'
+     select 'March', :from => 'event_start_time_2i'
+     select '17', :from => 'event_start_time_3i'
+     select '20', :from => 'event_start_time_4i'
+     select '19', :from => 'event_start_time_5i'
+     select '2023', :from => 'event_end_time_1i'
+     select 'April', :from => 'event_end_time_2i'
+     select '14', :from => 'event_end_time_3i'
+     select '01', :from => 'event_end_time_4i'
+     select '00', :from => 'event_end_time_5i'
+     fill_in 'Location', with: 'LocationTest'
+     fill_in 'Description', with: 'DescriptionTest'
+     click_on 'Create Event'
 
     # Edit new event
     visit events_path
@@ -103,9 +160,14 @@ RSpec.describe 'Deleting an event', type: :feature do
     # Login to Google
     visit '/admins/auth/google_oauth2'
 
+    #create new event_type
+    visit new_event_type_path
+    fill_in 'Description', with: 'EventTypeTest'
+    click_on 'Create Event type'
+
     # Create new event
     visit new_event_path
-    fill_in 'Event type', with: 1
+    select 'EventTypeTest', :from => 'event_event_type_id'
     fill_in 'Name', with: 'EventTest'
     select '2022', :from => 'event_start_time_1i'
     select 'February', :from => 'event_start_time_2i'
