@@ -3,7 +3,7 @@ docker run --rm -it --volume "$(pwd):/csce431" -e DATABASE_USER=test_app -e DATA
 #to run app
 bundle install && rails db:create && rails db:migrate
 rails server --binding=0.0.0.0
-#to view app go to localhost:3000/books
+#to view app go to localhost:3000
 #to run docker if port is already allocated
 docker ps
 #Find the name and use command below
