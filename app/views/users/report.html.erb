@@ -1,6 +1,5 @@
 <h1>Attendance Report</h2>
 
-# attendance report
 <table>
   <thead>
     <tr>
@@ -20,8 +19,8 @@
         <td><%= user.id %></td>
         <td><%= user.first_name %></td>
         <td><%= user.last_name %></td>
-        <td>2</td>
-        <td>'No'</td>
+        <td><%= Rsvp.where(user_id: user.id).count %></td>
+        <td>No</td>
         <td><%= link_to 'Show', user %></td>
       </tr>
     <% end %>
@@ -30,3 +29,5 @@
   <h2>There are currently no users in the table!</h2>
   <% end %>
 </table>
+
+<%= link_to 'Back to Users Menu', users_path %>
