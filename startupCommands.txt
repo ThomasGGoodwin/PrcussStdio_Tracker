@@ -10,3 +10,7 @@ docker ps
 docker kill <Name>
 #View all routes
 rails routes
+#Access database (must have heroku cli and postgresql cli installed) (I had to run this from cmd on Windows)
+heroku pg:psql postgresql-animate-38723 --app percussstudi-test-2f9bhi686hon
+#Access current table
+\c d10atkbermfldu
