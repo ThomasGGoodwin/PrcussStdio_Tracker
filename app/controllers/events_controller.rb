@@ -61,6 +61,11 @@ class EventsController < ApplicationController
     end
   end
 
+  def gig_master
+    @event = Event.find(params[:id])
+    @rsvps = RSVP.where(event_id: @event.id, attending: true)
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_event

@@ -1,0 +1,17 @@
+<h2>Select Users to attend this event: <%= @event.name %></h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Member</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @rsvps.each do |rsvp| %>
+      <tr>
+        <td><%= Users.find(id: )%></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

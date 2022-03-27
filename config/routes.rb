@@ -8,7 +8,10 @@ Rails.application.routes.draw do
   end
 
   #attendance report route
-  get '/users/attendance_report', to: 'users#report', as: "attendance_report"
+  get '/users/attendance_report', to: 'users#report', as: 'attendance_report'
+
+  #gig master view
+  get 'events/gig_master/:id', to: 'events#gig_master', as: 'gig_master'
 
   resources :roles
   resources :storage_keys
