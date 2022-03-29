@@ -3,14 +3,17 @@
 <table>
   <thead>
     <tr>
-      <th>Member</th>
+      <th>Name</th>
+      <th>email</th>
     </tr>
   </thead>
 
   <tbody>
     <% @rsvps.each do |rsvp| %>
+      <% user = User.find_by(email: rsvp.user_id) %>
       <tr>
-        <td><%= Users.find(id: )%></td>
+        <td><%= user.first_name %><%= ' ' %><%= user.last_name %></td>
+        <td><%= user.email %></td>
       </tr>
     <% end %>
   </tbody>
