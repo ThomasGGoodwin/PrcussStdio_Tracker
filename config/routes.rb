@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   end
 
   #attendance report route
-  get '/users/attendance_report', to: 'users#report', as: "attendance_report"
+  match '/users/attendance_report', to: 'users#attendance_report', via: [:get, :post]
 
   resources :roles
   resources :storage_keys
