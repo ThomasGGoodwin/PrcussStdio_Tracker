@@ -31,6 +31,11 @@ RSpec.describe 'Viewing the report with a created User', type: :feature do
     expect(page).to have_content('Potter')
     expect(page).to have_content(0)
     expect(page).to have_content('No')
+
+    # Check credit change
+    fill_in 'credit', with: '0'
+    click_on 'Change Credit Requirement'
+    expect(page).to have_content('Yes')
    end
 
    scenario "empty inputs" do
@@ -69,5 +74,10 @@ RSpec.describe 'Viewing the report with a created User', type: :feature do
     expect(page).to have_content('Potter')
     expect(page).to have_content(0)
     expect(page).to have_content('No')
+
+    # Check credit change
+    fill_in 'credit', with: '0'
+    click_on 'Change Credit Requirement'
+    expect(page).to have_content('Yes')
    end
 end
