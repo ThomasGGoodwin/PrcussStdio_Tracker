@@ -1,20 +1,76 @@
 <h2>Select Users to attend this event: <%= @event.name %></h2>
 
+<h3>Attending Users</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Instruments</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @attending_rsvps.each do |rsvp| %>
+      <% user = User.find_by(email: rsvp.user_id) %>
+      <tr>
+        <td><%= user.first_name %><%= ' ' %><%= user.last_name %></td>
+        <td><%= user.email %></td>
+        <td>Filler</td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<h3>Select Users</h3>
+<%= form_tag do |form| %>
+  <%= select_tag(:selected_users, options_from_collection_for_select(@attending_rsvps, 'id', 'user_id'), multiple: true) %>
+  <%= submit_tag('Update Selected Users') %>
+<% end %>
+
+<% if params[:selected_users].present? %>
+  <h3>Selected Users</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% params[:selected_users].each do |user_id_str| %>
+        <% user_id = user_id_str.to_i %>
+        <% user = User.find_by(id: user_id) %>
+        <tr>
+          <td><%= user.first_name %><%= ' ' %><%= user.last_name %></td>
+          <td><%= user.email %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
+
+<h3>Not Attending Users</h3>
 <table>
   <thead>
     <tr>
       <th>Name</th>
       <th>email</th>
+      <th>reason</th>
     </tr>
   </thead>
 
   <tbody>
-    <% @rsvps.each do |rsvp| %>
+    <% @not_attending_rsvps.each do |rsvp| %>
       <% user = User.find_by(email: rsvp.user_id) %>
       <tr>
         <td><%= user.first_name %><%= ' ' %><%= user.last_name %></td>
         <td><%= user.email %></td>
+        <td><%= rsvp.reason %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
+
+<%= link_to 'Back', events_path %>

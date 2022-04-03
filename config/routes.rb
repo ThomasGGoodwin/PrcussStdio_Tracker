@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 
   #gig master view
   get 'events/gig_master/:id', to: 'events#gig_master', as: 'gig_master'
+  match '/events/gig_master/:id', to: 'events#gig_master', via: [:get, :post]
 
   resources :roles
   resources :storage_keys

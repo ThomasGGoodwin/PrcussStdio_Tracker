@@ -63,7 +63,8 @@ class EventsController < ApplicationController
 
   def gig_master
     @event = Event.find(params[:id])
-    @rsvps = Rsvp.where(event_id: @event.id, attending: true)
+    @attending_rsvps = Rsvp.where(event_id: @event.id, attending: true)
+    @not_attending_rsvps = Rsvp.where(event_id: @event.id, attending: false)
   end
 
   private

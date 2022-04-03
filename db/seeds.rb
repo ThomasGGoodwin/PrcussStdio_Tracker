@@ -17,3 +17,28 @@ User.create(first_name: 'Cristian', last_name: 'Avalos', email: 'avalos672918@ta
 User.create(first_name: 'Wyatt', last_name: 'Smith', email: 'wyattsmith@tamu.edu', role_id: 1)
 
 EventType.create(description: 'Gig')
+
+Event.create(event_type_id: 1,
+             name:          'Test Event',
+             start_time:    DateTime.strptime("04/11/2022 10:00", "%m/%d/%Y %H:%M"),
+             end_time:      DateTime.strptime("04/11/2022 12:00", "%m/%d/%Y %H:%M"),
+             location:      'Test Location',
+             description:   'Test Description')
+
+Rsvp.create(user_id: 'thomasgoodwin@tamu.edu',
+            event_id: 1,
+            rsvp_time: DateTime.now(),
+            attending: true,
+            reason: '')
+
+Rsvp.create(user_id: 'yocuml19@tamu.edu',
+            event_id: 1,
+            rsvp_time: DateTime.now(),
+            attending: true,
+            reason: '')
+
+Rsvp.create(user_id: 'stevengrimshaw@tamu.edu',
+            event_id: 1,
+            rsvp_time: DateTime.now(),
+            attending: true,
+            reason: '')
