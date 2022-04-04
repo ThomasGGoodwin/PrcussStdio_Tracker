@@ -65,7 +65,7 @@ class RsvpsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def rsvp_params
-      params.require(:rsvp).permit(:user_id, :event_id, :rsvp_time, :attending, :reason)
+      params.require(:rsvp).permit(:user_id, :event_id, :rsvp_time, {:instrument_ids => []}, :attending, :reason)
     end
 
     # When not attending require a reason to be filled in the box
