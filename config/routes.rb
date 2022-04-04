@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :instruments
   root to: 'dashboards#show'
   get '/member', to: 'dashboards#member'
   devise_for :admins, controllers: { omniauth_callbacks: 'admins/omniauth_callbacks' }
@@ -8,7 +9,8 @@ Rails.application.routes.draw do
   end
 
   #attendance report route
-  get '/users/attendance_report', to: 'users#report', as: 'attendance_report'
+  get '/users/attendance_report', to: 'users#attendance_report', as: "attendance_report"
+  match '/users/attendance_report', to: 'users#attendance_report', via: [:get, :post]
 
   #gig master view
   get 'events/gig_master/:id', to: 'events#gig_master', as: 'gig_master'
