@@ -4,7 +4,6 @@ class RsvpsController < ApplicationController
   # GET /rsvps or /rsvps.json
   def index
     @rsvps = Rsvp.all
-    @instruments = Instrument.all
   end
 
   # GET /rsvps/1 or /rsvps/1.json
