@@ -1,5 +1,6 @@
 class DashboardsController < ApplicationController
   def show
+    @events = Event.all
     begin
       user_role_int = User.where(email: current_admin.email).first.role
       session[:user_role] = Role.where(id: user_role_int).first.role_description
@@ -13,6 +14,7 @@ class DashboardsController < ApplicationController
   end
 
   #to get to member page
-  def member 
+  def member
+    @events = Event.all 
   end
 end
