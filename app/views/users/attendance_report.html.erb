@@ -20,9 +20,9 @@
         <td><%= user.first_name %></td>
         <td><%= user.last_name %></td>
         <% # checks RSVPS that include the email of the user being checked to add a credit for each one %>
-        <td><%= Rsvp.where(user_id: user.email).count %></td>
+        <td><%= Rsvp.where(user_id: user.email, attending: true).count %></td>
         <% # compares above number to local variable to decide if requirement is met or not %>
-        <% if Rsvp.where(user_id: user.email).count < @attendance_credit %>
+        <% if Rsvp.where(user_id: user.email, attending: true).count < @attendance_credit %>
           <td>No</td>
         <% else %>
           <td>Yes</td>
