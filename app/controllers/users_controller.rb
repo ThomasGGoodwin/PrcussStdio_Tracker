@@ -61,6 +61,11 @@ class UsersController < ApplicationController
   #attendance report /users/attendance_report
   def attendance_report
     @users = User.all
+    if params[:credit].present?
+      @attendance_credit = params[:credit].to_i
+    else
+      @attendance_credit = 5;
+    end
   end
 
   private

@@ -8,6 +8,7 @@
       <th>User</th>
       <th>Event</th>
       <th>Rsvp time</th>
+      <th>Instrument</th>
       <th>Attending</th>
       <th>Reason</th>
       <th colspan="3"></th>
@@ -17,9 +18,10 @@
   <tbody>
     <% @rsvps.each do |rsvp| %>
       <tr>
-        <td><%= rsvp.user_id %></td>
-        <td><%= rsvp.event_id %></td>
+        <td><%= get_user_name(rsvp.user_id) %></td>
+        <td><%= Event.where(id: rsvp.event_id).first.name %></td>
         <td><%= rsvp.rsvp_time %></td>
+        <td><%= Instrument.where(id: rsvp.instrument_ids).pluck(:name) %></td>
         <td><%= rsvp.attending %></td>
         <td><%= rsvp.reason %></td>
         <td><%= link_to 'Show', rsvp %></td>

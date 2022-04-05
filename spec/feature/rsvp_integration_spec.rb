@@ -2,19 +2,34 @@
 require 'rails_helper'
 
 RSpec.describe 'Creating a rsvp', type: :feature do
+  
+  before do
+    EventType.create(id: 1, description: 'Test')
+    @event = Event.create(event_type_id: 1, name: 'EventTest', start_time: '2050-02-17 01:01:00', end_time: '2050-02-17 02:01:00', location: 'LocationTest', description: 'DescriptionTest')
+    Instrument.create(id: 1, name: 'Snare') 
+    Instrument.create(id: 2, name: 'Quads')
+  end
+
   scenario 'valid input: attending' do
     # Login to Google
     visit '/admins/auth/google_oauth2'
 
-    # Create new rsvp
+    # Find event to RSVP
+    visit events_path
+    click_on 'RSVP'
 
-    visit new_rsvp_path(:rsvp => { :user_id => 1, :event_id => 1, :rsvp_time => '2022-02-17 17:20:19' })
+    # Create new rsvp
+    check('Snare', allow_label_click: true)
+    check('Quads', allow_label_click: true)
     check('rsvp_attending', allow_label_click: true)
     click_on 'Create Rsvp'
 
     # Check page for created event
     visit rsvps_path
-    expect(page).to have_content('1')
+    expect(page).to have_content('avalos672918@tamu.edu')
+    expect(page).to have_content('EventTest')
+    expect(page).to have_content('Snare')
+    expect(page).to have_content('Quads')
     expect(page).to have_content('true')
   end
 
@@ -22,25 +37,54 @@ RSpec.describe 'Creating a rsvp', type: :feature do
     # Login to Google
     visit '/admins/auth/google_oauth2'
 
-    # Create new rsvp
+    # Find event to RSVP
+    visit events_path
+    click_on 'RSVP'
 
-    visit new_rsvp_path(:rsvp => { :user_id => 1, :event_id => 1, :rsvp_time => '2022-02-17 17:20:19' })
+    # Create new rsvp
+    check('Snare', allow_label_click: true)
     fill_in 'Reason', with: 'Reason Test'
     click_on 'Create Rsvp'
 
     # Check page for created event
     visit rsvps_path
-    expect(page).to have_content('1')
+    expect(page).to have_content('avalos672918@tamu.edu')
+    expect(page).to have_content('EventTest')
+    expect(page).to have_content('Snare')
+    expect(page).to have_content('false')
     expect(page).to have_content('Reason Test')
   end
 
-  scenario 'invalid input: not attending and no reason' do
+  scenario 'valid input: shows full name, not email' do
+    # Create user
+    Role.create(id: 1, role_description: 'Member')
+    @user = User.create(first_name: 'First', last_name: 'Last', email: 'test@tamu.edu', role_id: 1)
+
     # Login to Google
     visit '/admins/auth/google_oauth2'
 
     # Create new rsvp
+    visit new_rsvp_path(:rsvp => {:user_id => @user.email, :event_id => @event.id, :rsvp_time => "2022-02-17 20:19:00"})
+    check('Snare', allow_label_click: true)
+    fill_in 'Reason', with: 'Reason Test'
+    click_on 'Create Rsvp'
 
-    visit new_rsvp_path(:rsvp => { :user_id => 1, :event_id => 1, :rsvp_time => '2022-02-17 17:20:19' })
+    # Check page for created event
+    visit rsvps_path
+    expect(page).to have_content('Last, First')
+    expect(page).to have_no_content('test@tamu.edu')
+  end
+
+  scenario 'invalid input: missing attributes' do
+    # Login to Google
+    visit '/admins/auth/google_oauth2'
+
+    # Find event to RSVP
+    visit events_path
+    click_on 'RSVP'
+
+    # Create new rsvp
+    check('Snare', allow_label_click: true)
     click_on 'Create Rsvp'
 
     # Check for errors
@@ -49,12 +93,24 @@ RSpec.describe 'Creating a rsvp', type: :feature do
 end
 
 RSpec.describe 'Updating an rsvp', type: :feature do
+
+  before do
+    EventType.create(id: 1, description: 'Test')
+    Event.create(event_type_id: 1, name: 'EventTest', start_time: '2050-02-17 01:01:00', end_time: '2050-02-17 02:01:00', location: 'LocationTest', description: 'DescriptionTest')
+    Instrument.create(name: 'Snare') 
+    Instrument.create(name: 'Quads')
+  end
+
   scenario 'successful: attend to not' do
     # Login to Google
     visit '/admins/auth/google_oauth2'
 
+    # Find event to RSVP
+    visit events_path
+    click_on 'RSVP'
+
     # Create new rsvp
-    visit new_rsvp_path(:rsvp => { :user_id => 1, :event_id => 1, :rsvp_time => '2022-02-17 17:20:19' })
+    check('Snare', allow_label_click: true)
     check('rsvp_attending', allow_label_click: true)
     click_on 'Create Rsvp'
 
@@ -75,8 +131,12 @@ RSpec.describe 'Updating an rsvp', type: :feature do
     # Login to Google
     visit '/admins/auth/google_oauth2'
 
+    # Find event to RSVP
+    visit events_path
+    click_on 'RSVP'
+
     # Create new rsvp
-    visit new_rsvp_path(:rsvp => { :user_id => 1, :event_id => 1, :rsvp_time => '2022-02-17 17:20:19' })
+    check('Snare', allow_label_click: true)
     fill_in 'Reason', with: 'Reason Test'
     click_on 'Create Rsvp'
 
@@ -90,14 +150,19 @@ RSpec.describe 'Updating an rsvp', type: :feature do
     # Check for edit
     visit rsvps_path
     expect(page).to have_content('true')
+    expect(page).to have_no_content('Reason Test')
   end
 
   scenario 'failure: attend to not' do
     # Login to Google
     visit '/admins/auth/google_oauth2'
 
+    # Find event to RSVP
+    visit events_path
+    click_on 'RSVP'
+
     # Create new rsvp
-    visit new_rsvp_path(:rsvp => { :user_id => 1, :event_id => 1, :rsvp_time => '2022-02-17 17:20:19' })
+    check('Snare', allow_label_click: true)
     check('rsvp_attending', allow_label_click: true)
     click_on 'Create Rsvp'
 
@@ -117,12 +182,24 @@ RSpec.describe 'Updating an rsvp', type: :feature do
 end
 
 RSpec.describe 'Deleting an rsvp', type: :feature do
+
+  before do
+    EventType.create(id: 1, description: 'Test')
+    Event.create(event_type_id: 1, name: 'EventTest', start_time: '2050-02-17 01:01:00', end_time: '2050-02-17 02:01:00', location: 'LocationTest', description: 'DescriptionTest')
+    Instrument.create(name: 'Snare') 
+    Instrument.create(name: 'Quads')
+  end
+
   scenario 'successful: attend to not' do
     # Login to Google
     visit '/admins/auth/google_oauth2'
 
+    # Find event to RSVP
+    visit events_path
+    click_on 'RSVP'
+
     # Create new rsvp
-    visit new_rsvp_path(:rsvp => { :user_id => 1, :event_id => 1, :rsvp_time => '2022-02-17 17:20:19' })
+    check('Snare', allow_label_click: true)
     check('rsvp_attending', allow_label_click: true)
     click_on 'Create Rsvp'
 
@@ -141,7 +218,7 @@ RSpec.describe 'RSVP button toggle', type: :feature do
     # Login to Google
     visit '/admins/auth/google_oauth2'
 
-    #create new event_type
+    # Create new event_type
     visit new_event_type_path
     fill_in 'Description', with: 'EventTypeTest'
     click_on 'Create Event type'
