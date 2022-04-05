@@ -16,7 +16,7 @@
       <tr>
         <td><%= user.first_name %><%= ' ' %><%= user.last_name %></td>
         <td><%= user.email %></td>
-        <td>Filler</td>
+        <td><%= Instrument.where(id: rsvp.instrument_ids).pluck(:name) %></td>
       </tr>
     <% end %>
   </tbody>
@@ -49,6 +49,7 @@
       <% end %>
     </tbody>
   </table>
+  
 <% end %>
 
 <h3>Not Attending Users</h3>

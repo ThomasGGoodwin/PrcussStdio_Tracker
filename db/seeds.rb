@@ -25,20 +25,33 @@ Event.create(event_type_id: 1,
              location:      'Test Location',
              description:   'Test Description')
 
+Instrument.create(name: 'Drums')
+Instrument.create(name: 'Tambourine')
+
 Rsvp.create(user_id: 'thomasgoodwin@tamu.edu',
             event_id: 1,
             rsvp_time: DateTime.now(),
             attending: true,
-            reason: '')
+            reason: '',
+            instrument_ids: [1, 2])
 
 Rsvp.create(user_id: 'yocuml19@tamu.edu',
             event_id: 1,
             rsvp_time: DateTime.now(),
             attending: true,
-            reason: '')
+            reason: '',
+            instrument_ids: [1])
 
 Rsvp.create(user_id: 'stevengrimshaw@tamu.edu',
             event_id: 1,
             rsvp_time: DateTime.now(),
             attending: true,
-            reason: '')
+            reason: '',
+            instrument_ids: [2])
+
+Rsvp.create(user_id: 'avalos672918@tamu.edu',
+            event_id: 1,
+            rsvp_time: DateTime.now(),
+            attending: false,
+            reason: 'A fine reason I\'m sure',
+            instrument_ids: [2])
