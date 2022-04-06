@@ -7,8 +7,10 @@ Rails.application.routes.draw do
     get 'admins/sign_out', to: 'admins/sessions#destroy', as: :destroy_admin_session
   end
 
-  #attendance report route
+  # attendance report route
   get '/users/attendance_report', to: 'users#report', as: "attendance_report"
+  # pending user route
+  get '/users/new_pending', to: 'users#new_pending', as: "new_pending"
 
   resources :roles
   resources :storage_keys

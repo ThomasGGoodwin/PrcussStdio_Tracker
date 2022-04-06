@@ -74,5 +74,37 @@ RSpec.configure do |config|
         :token => "token",
         :refresh_token => "refresh token"
       }
+  })
+
+  def user1
+    OmniAuth.config.test_mode = true
+    OmniAuth.config.mock_auth[:google_oauth2] = OmniAuth::AuthHash.new({
+        :provider => "google_oauth2",
+        :uid => "123456789",
+        :info => {
+          :name => "Test User1",
+          :email => "email1@tamu.edu"
+        },
+        :credentials => {
+          :token => "token",
+          :refresh_token => "refresh token"
+        }
     })
+  end
+
+  def user2
+    OmniAuth.config.test_mode = true
+    OmniAuth.config.mock_auth[:google_oauth2] = OmniAuth::AuthHash.new({
+        :provider => "google_oauth2",
+        :uid => "987654321",
+        :info => {
+          :name => "Test User2",
+          :email => "email2@tamu.edu"
+        },
+        :credentials => {
+          :token => "token",
+          :refresh_token => "refresh token"
+        }
+    })
+  end
 end
