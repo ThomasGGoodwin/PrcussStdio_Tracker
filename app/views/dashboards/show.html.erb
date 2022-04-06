@@ -31,6 +31,8 @@ h1{
 
 </style>
 
+<% if session[:user_role] == 'Admin'  || if session[:user_role] == 'Member'%>
+<% if session[:user_role] == 'Admin' %>
 <nav class="navbar navbar-expand-lg navbar-light bg-secondary">
   <a class="navbar-brand white" href="#">Percussion Studio - Admin</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -51,10 +53,37 @@ h1{
       <li class="nav-item">
         <button type="button" class="btn btn-default navbar-btn"><%= link_to 'Users', users_path, class: 'nav-link white'%></button>
       </li>
-      
+      <li class="nav-item">
+        <button type="button" class="btn btn-default navbar-btn"><%= link_to 'RSVP', rsvps_path, class: 'nav-link white'%></button>
+      </li>
+      <li class="nav-item">
+        <button type="button" class="btn btn-default navbar-btn"><%= link_to 'Instruments', instruments_path, class: 'nav-link white'%></button>
+      </li>
     </ul>
   </div>
 </nav>
+<h3>Welcome admin, <%= current_admin.full_name -%></h3>
+
+
+
+<% else %>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Percussion Studio</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <button type="button" class="btn btn-default navbar-btn"><%= link_to 'Storage Keys', storage_keys_path, class: 'nav-link white'%>
+        </li>
+        
+      </ul>
+    </div>
+    </nav>
+    <h3>Welcome member, <%= current_admin.full_name -%></h3>
+<% end %>
 
 <div class="jumbotron" id="includedContent" style="background-color:white">
 <p id="notice"><%= notice %></p>
@@ -150,3 +179,9 @@ h1{
 <%= link_to "Sign Out", destroy_admin_session_path, class: "btn btn-primary a-primary" %>
 
 </div>
+
+<% else %>
+<h3>You are not a member, <%= current_admin.full_name -%></h3>
+
+    <%= link_to "Back", destroy_admin_session_path %>
+<% end %>
