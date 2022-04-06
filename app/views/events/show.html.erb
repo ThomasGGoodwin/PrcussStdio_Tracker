@@ -30,5 +30,7 @@
   <%= @event.description %>
 </p>
 
-<%= link_to 'Edit', edit_event_path(@event) %> |
+<% if session[:user_role] == 'Admin' %>
+  <%= link_to 'Edit', edit_event_path(@event) %> 
+<% end %> |
 <%= link_to 'Back', events_path %>

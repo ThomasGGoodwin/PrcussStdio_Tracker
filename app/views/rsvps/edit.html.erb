@@ -3,4 +3,8 @@
 <%= render 'form', rsvp: @rsvp %>
 
 <%= link_to 'Show', @rsvp %> |
-<%= link_to 'Back', rsvps_path %>
+<% if session[:user_role] == 'Admin' %>
+    <%= link_to 'Back', rsvps_path %>
+<% else %>
+    <%= link_to 'Back', events_path %>
+<% end %>

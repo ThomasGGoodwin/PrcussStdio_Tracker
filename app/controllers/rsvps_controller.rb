@@ -25,7 +25,7 @@ class RsvpsController < ApplicationController
 
     respond_to do |format|
       if @rsvp.save
-        format.html { redirect_to rsvp_url(@rsvp), notice: "Rsvp was successfully created." }
+        format.html { redirect_to events_path, notice: "Rsvp was successfully created." }
         format.json { render :show, status: :created, location: @rsvp }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +38,7 @@ class RsvpsController < ApplicationController
   def update
     respond_to do |format|
       if @rsvp.update(rsvp_params) && valid_reason?
-        format.html { redirect_to rsvp_url(@rsvp), notice: "Rsvp was successfully updated." }
+        format.html { redirect_to events_path, notice: "Rsvp was successfully updated." }
         format.json { render :show, status: :ok, location: @rsvp }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -65,7 +65,7 @@ class RsvpsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def rsvp_params
-      params.require(:rsvp).permit(:user_id, :event_id, :rsvp_time, :attending, :reason)
+      params.require(:rsvp).permit(:user_id, :event_id, :rsvp_time, {:instrument_ids => []}, :attending, :reason)
     end
 
     # When not attending require a reason to be filled in the box

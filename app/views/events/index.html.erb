@@ -38,10 +38,12 @@
         <td><%= event.end_time %></td>
         <td><%= event.location %></td>
         <td><%= event.description %></td>
-        <td><%= toggle_signup_button(current_admin.uid, event.id) %></td>
+        <td><%= toggle_signup_button(current_admin.email, event.id) %></td>
         <td><%= link_to 'Show', event %></td>
-        <td><%= link_to 'Edit', edit_event_path(event) %></td>
-        <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if session[:user_role] == 'Admin' %>
+          <td><%= link_to 'Edit', edit_event_path(event) %></td>
+          <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
@@ -79,8 +81,10 @@
         <td><%= event.location %></td>
         <td><%= event.description %></td>
         <td><%= link_to 'Show', event %></td>
-        <td><%= link_to 'Edit', edit_event_path(event) %></td>
-        <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if session[:user_role] == 'Admin' %>
+          <td><%= link_to 'Edit', edit_event_path(event) %></td>
+          <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
