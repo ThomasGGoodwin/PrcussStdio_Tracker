@@ -15,17 +15,22 @@
     <% @storage_keys.each do |storage_key| %>
       <tr>
         <td><%= storage_key.id %></td>
-        <td><%= storage_key.user_id %></td>
+        <td><%= first_and_last_show(storage_key.user_id) %></td>
         <td><%= link_to 'Show', storage_key %></td>
-        <td><%= link_to 'Edit', edit_storage_key_path(storage_key) %></td>
-        <td><%= link_to 'Destroy', storage_key, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if session[:user_role] == 'Admin' || session[:current_user_id] == storage_key.user_id.to_i %>
+          <td><%= link_to 'Edit', edit_storage_key_path(storage_key) %></td>
+        <% end %>
+        <% if session[:user_role] == 'Admin' %>
+          <td><%= link_to 'Destroy', storage_key, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
-<%= link_to 'New Storage Key', new_storage_key_path %>
+<% if session[:user_role] == 'Admin' %>
+  <%= link_to 'New Storage Key', new_storage_key_path %>
+<% end %>
 <br>
 <%= link_to 'Back', root_url %>

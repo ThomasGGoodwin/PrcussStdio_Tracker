@@ -12,6 +12,7 @@
 <% elsif session[:user_role] == 'Member' %>
     <h3>Welcome member, <%= current_admin.full_name -%></h3>
     <%= link_to "calendar", events_path %><br>
+    <%= link_to 'Storage Keys', storage_keys_path %><br>
 
     <%= link_to "Sign Out", destroy_admin_session_path %>
 <% else %>
