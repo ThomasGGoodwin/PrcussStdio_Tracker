@@ -16,7 +16,7 @@ module StorageKeysHelper
 
     #def check if user is admin or member and create that view for the index
     def check_priviledges_keys(role)
-        if role == "Admin"
+        if role == 'Admin'
             render 'admin_view'
         elsif role == "Member"
             render 'member_view'
