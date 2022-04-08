@@ -1,6 +1,5 @@
 module RolesHelper
     def verify_creds_roles(role, page)
-        #role = 'Member'
         if role != 'Admin'
             render 'shared_partials/invalid_access'
         elsif page == 'index'
