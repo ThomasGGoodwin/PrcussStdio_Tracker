@@ -1,16 +1,21 @@
-<p id="notice"><%= notice %></p>
+<%= render 'shared_partials/style'%>
+<%= keys_navbar(session[:user_role])%>
 
-<p>
-  <strong>Storage key ID:</strong>
-  <%= @storage_key.id %>
-</p>
+<div class="jumbotron" style="background-color:white">
+  <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>User:</strong>
-  <%= first_and_last_show(@storage_key.user_id) %>
-</p>
+  <p>
+    <strong>Storage key ID:</strong>
+    <%= @storage_key.id %>
+  </p>
 
-<% if session[:user_role] == 'Admin' || session[:current_user_id] == @storage_key.user_id.to_i %>
-  <%= link_to 'Edit', edit_storage_key_path(@storage_key) %> 
-<% end %>
-<%= link_to 'Back', storage_keys_path %>
+  <p>
+    <strong>User:</strong>
+    <%= first_and_last_show(@storage_key.user_id) %>
+  </p>
+
+  <% if session[:user_role] == 'Admin' || session[:current_user_id] == @storage_key.user_id.to_i %>
+    <%= link_to 'Edit', edit_storage_key_path(@storage_key), class:'btn btn-secondary a-primary' %> 
+  <% end %>
+  <%= link_to 'Back', storage_keys_path, class:'btn btn-secondary a-primary' %>
+</div>
