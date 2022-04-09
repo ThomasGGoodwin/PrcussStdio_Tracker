@@ -53,7 +53,8 @@
       <% end %>
     </tbody>
     <h4>Email Body</h4>
-    <%= event_details(event_id) + '\n\n' + message%>
+    <% email_text = details(@event.id) + "\n\n" + params[:message]%>
+    <%= safe_join(email_text.split("\n"), "<br />".html_safe) %>
     <h4>Send Email</h4>
   </table>
   
