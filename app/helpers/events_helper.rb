@@ -9,4 +9,13 @@ module EventsHelper
         end
         content.html_safe
     end
+    def details(event_id)
+        event = Event.where(id: event_id)
+        message =  'Title: ' + event.name + '\n'
+        message += 'Type: ' + EventType.find(event.event_type_id).description + '\n'
+        message += 'Location: ' + event.location + '\n'
+        message += 'Time: ' + event.start_time + ' - ' event.end_time + '\n'
+        message += 'Description: ' + event.description
+        return message
+    end
 end

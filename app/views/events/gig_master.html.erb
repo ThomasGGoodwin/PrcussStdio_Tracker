@@ -22,14 +22,18 @@
   </tbody>
 </table>
 
-<h3>Select Users</h3>
+<h3>Invite details</h3>
 <%= form_tag do |form| %>
+  <h4>Users</h4>
   <%= select_tag(:selected_users, options_from_collection_for_select(@attending_rsvps, 'id', 'user_id'), multiple: true) %>
-  <%= submit_tag('Update Selected Users') %>
+  <h4>Other email text (event details will automatically be included, put other specifics here)</h4>
+  <%= text_area_tag(:message)%>
+  <%= submit_tag('Update Email Details') %>
 <% end %>
 
 <% if params[:selected_users].present? %>
-  <h3>Selected Users</h3>
+  <h3>Confirm Email Details</h3>
+  <h4>Selected Users</h4>
   <table>
     <thead>
       <tr>
@@ -48,6 +52,9 @@
         </tr>
       <% end %>
     </tbody>
+    <h4>Email Body</h4>
+    <%= event_details(event_id) + '\n\n' + message%>
+    <h4>Send Email</h4>
   </table>
   
 <% end %>
