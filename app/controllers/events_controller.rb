@@ -65,6 +65,11 @@ class EventsController < ApplicationController
     @not_attending_rsvps = Rsvp.where(event_id: @event.id, attending: false)
   end
 
+  def send_event_email
+    params.permit :id, :message, :user_emails
+    GigMailer.invite_email(params[:id], params[:message], params[:user_emails]).deliver_now
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_event

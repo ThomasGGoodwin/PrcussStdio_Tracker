@@ -16,6 +16,9 @@ Rails.application.routes.draw do
   get 'events/gig_master/:id', to: 'events#gig_master', as: 'gig_master'
   match '/events/gig_master/:id', to: 'events#gig_master', via: [:get, :post]
 
+  #sending emails
+  get 'events/:id/send_event_email', to: 'events#send_event_email', as: 'send_event_email'
+
   resources :roles
   resources :storage_keys
   resources :event_types

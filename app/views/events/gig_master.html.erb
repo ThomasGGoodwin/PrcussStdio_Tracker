@@ -25,13 +25,13 @@
 <h3>Invite details</h3>
 <%= form_tag do |form| %>
   <h4>Users</h4>
-  <%= select_tag(:selected_users, options_from_collection_for_select(@attending_rsvps, 'id', 'user_id'), multiple: true) %>
+  <%= select_tag(:selected_emails, options_from_collection_for_select(@attending_rsvps, 'user_id', 'user_id'), multiple: true) %>
   <h4>Other email text (event details will automatically be included, put other specifics here)</h4>
   <%= text_area_tag(:message)%>
   <%= submit_tag('Update Email Details') %>
 <% end %>
 
-<% if params[:selected_users].present? %>
+<% if params[:selected_emails].present? %>
   <h3>Confirm Email Details</h3>
   <h4>Selected Users</h4>
   <table>
@@ -43,20 +43,20 @@
     </thead>
 
     <tbody>
-      <% params[:selected_users].each do |user_id_str| %>
-        <% user_id = user_id_str.to_i %>
-        <% user = User.find_by(id: user_id) %>
+      <% params[:selected_emails].each do |user_email| %>
+        <% user = User.find_by(email: user_email) %>
         <tr>
           <td><%= user.first_name %><%= ' ' %><%= user.last_name %></td>
           <td><%= user.email %></td>
         </tr>
       <% end %>
     </tbody>
-    <h4>Email Body</h4>
-    <% email_text = details(@event.id) + "\n\n" + params[:message]%>
-    <%= safe_join(email_text.split("\n"), "<br />".html_safe) %>
-    <h4>Send Email</h4>
   </table>
+  <h4>Email Body</h4>
+  <% email_text = @event.email_string + "\n\n" + params[:message]%>
+  <%= safe_join(email_text.split("\n"), "<br />".html_safe) %>
+  <br>
+  <%= link_to 'Send email', send_event_email_path, :id => params[:id], :message => params[:message], :user_emails => params[:selected_emails], class: "big-button" %>
   
 <% end %>
 
@@ -74,7 +74,7 @@
     <% @not_attending_rsvps.each do |rsvp| %>
       <% user = User.find_by(email: rsvp.user_id) %>
       <tr>
-        <td><%= user.first_name %><%= ' ' %><%= user.last_name %></td>
+        <td><%= user.first_name + ' ' + user.last_name %></td>
         <td><%= user.email %></td>
         <td><%= rsvp.reason %></td>
       </tr>
