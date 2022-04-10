@@ -25,9 +25,10 @@
 <h3>Invite details</h3>
 <%= form_tag do |form| %>
   <h4>Users</h4>
+  <%= hidden_field_tag(:send, false) %>
   <%= select_tag(:selected_emails, options_from_collection_for_select(@attending_rsvps, 'user_id', 'user_id'), multiple: true) %>
   <h4>Other email text (event details will automatically be included, put other specifics here)</h4>
-  <%= text_area_tag(:message)%>
+  <%= text_area_tag(:message) %>
   <%= submit_tag('Update Email Details') %>
 <% end %>
 
@@ -46,7 +47,7 @@
       <% params[:selected_emails].each do |user_email| %>
         <% user = User.find_by(email: user_email) %>
         <tr>
-          <td><%= user.first_name %><%= ' ' %><%= user.last_name %></td>
+          <td><%= user.first_name + ' ' + user.last_name %></td>
           <td><%= user.email %></td>
         </tr>
       <% end %>
@@ -55,8 +56,18 @@
   <h4>Email Body</h4>
   <% email_text = @event.email_string + "\n\n" + params[:message]%>
   <%= safe_join(email_text.split("\n"), "<br />".html_safe) %>
-  <br>
-  <%= link_to 'Send email', send_event_email_path, :id => params[:id], :message => params[:message], :user_emails => params[:selected_emails], class: "big-button" %>
+  <br> 
+  <% if params[:send] == "false" %>
+    <%= form_tag do |form| %>
+      <%= hidden_field_tag(:send, true) %>
+      <%= hidden_field_tag(:message, params[:message]) %>
+      <%= hidden_field_tag(:selected_emails_str, params[:selected_emails].join(", ")) %>
+      <%= submit_tag('Send email') %>
+    <% end %>
+  <% else %>
+    <h3>Email sent!</h3>
+    <%= link_to "Back", events_path%>
+  <% end %>
   
 <% end %>
 

@@ -63,11 +63,12 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     @attending_rsvps = Rsvp.where(event_id: @event.id, attending: true)
     @not_attending_rsvps = Rsvp.where(event_id: @event.id, attending: false)
-  end
-
-  def send_event_email
-    params.permit :id, :message, :user_emails
-    GigMailer.invite_email(params[:id], params[:message], params[:user_emails]).deliver_now
+    if params[:selected_emails_str].present?
+      params[:selected_emails] = params[:selected_emails_str].split(", ")
+    end
+    if params[:send].present? && params[:send] == "true"
+      GigMailer.invite_email(@event.id, params[:message], params[:selected_emails]).deliver_now
+    end
   end
 
   private
