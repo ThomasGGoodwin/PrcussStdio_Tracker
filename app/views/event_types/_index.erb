@@ -1,0 +1,35 @@
+<%= render 'shared_partials/admin_nav'%>
+
+<p id="notice"><%= notice %></p>
+
+<div class="jumbotron" id="includedContent" style="background-color:white">
+<h1>Event Types</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Event Type ID</th>
+      <th scope="col">Description</th>
+      <th scope="col"colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @event_types.each do |event_type| %>
+      <tr>
+        <td><%= event_type.id %></td>
+        <td><%= event_type.description %></td>
+        <td><%= link_to 'Show', event_type, class:'a-CRUD' %></td>
+        <td><%= link_to 'Edit', edit_event_type_path(event_type), class:'a-CRUD' %></td>
+        <td><%= link_to 'Destroy', event_type, method: :delete, data: { confirm: 'Are you sure?' }, class:'a-CRUD' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Event Type', new_event_type_path, class:"btn btn-primary a-primary" %>
+<br><br>
+<%= link_to 'Back', root_url, class:"btn btn-secondary a-primary" %>
+</div>

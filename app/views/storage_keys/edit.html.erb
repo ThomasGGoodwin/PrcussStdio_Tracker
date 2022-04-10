@@ -1,6 +1,11 @@
-<h1>Editing Storage Key</h1>
+<%= render 'shared_partials/style' %>
+<%= keys_navbar(session[:user_role]) %>
 
-<%= render 'form', storage_key: @storage_key %>
+<div class="jumbotron" style="background-color:white">
+    <h1>Editing Storage Key</h1>
 
-<%= link_to 'Show', @storage_key %> |
-<%= link_to 'Back', storage_keys_path %>
+    <%= render 'form', storage_key: @storage_key %>
+
+    <%= link_to 'Show', @storage_key, class:'btn btn-secondary a-primary' %>
+    <%= link_to 'Back', storage_keys_path, class:'btn btn-secondary a-primary' %>
+</div>

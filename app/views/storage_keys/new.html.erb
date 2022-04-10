@@ -1,5 +1,2 @@
-<h1>New Storage Key</h1>
-
-<%= render 'form', storage_key: @storage_key %>
-
-<%= link_to 'Back', storage_keys_path %>
+<%= render 'shared_partials/style'%>
+<%= verify_creds_keys(session[:user_role], "new")%>

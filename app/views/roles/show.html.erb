@@ -1,14 +1,2 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Role ID:</strong>
-  <%= @role.id %>
-</p>
-
-<p>
-  <strong>Role description:</strong>
-  <%= @role.role_description %>
-</p>
-
-<%= link_to 'Edit', edit_role_path(@role) %> |
-<%= link_to 'Back', roles_path %>
+<%= render 'shared_partials/style' %>
+<%= verify_creds_roles(session[:user_role], 'show') %>

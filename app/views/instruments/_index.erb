@@ -1,0 +1,35 @@
+<%= render 'shared_partials/admin_nav' %>
+
+<div class="jumbotron" style="background-color:white">
+  <p id="notice"><%= notice %></p>
+
+  <h1>Instruments</h1>
+
+  <div class="tabel-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @instruments.each do |instrument| %>
+          <tr>
+            <td><%= instrument.name %></td>
+            <td><%= link_to 'Show', instrument, class:'a-CRUD' %></td>
+            <td><%= link_to 'Edit', edit_instrument_path(instrument),  class:'a-CRUD' %></td>
+            <td><%= link_to 'Destroy', instrument, method: :delete, data: { confirm: 'Are you sure?' }, class:'a-CRUD' %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+  <br>
+
+  <%= link_to 'New Instrument', new_instrument_path, class:'btn btn-primary a-primary' %>
+  <br><br>
+  <%= link_to 'Back', root_url, class:'btn btn-secondary a-primary' %>
+</div>

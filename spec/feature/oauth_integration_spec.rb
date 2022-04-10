@@ -23,7 +23,7 @@ RSpec.describe 'Sign In', type: :feature do
         click_on 'Create User'
 
         visit root_url
-        expect(page).to have_content('Welcome admin')
+        expect(page).to have_content('Percussion Studio - Admin')
     end
 
     scenario 'valid member' do
@@ -48,15 +48,16 @@ RSpec.describe 'Sign In', type: :feature do
 
         # Check page for member login
         visit root_url
-        expect(page).to have_content('Welcome member')
+        expect(page).to have_content('Percussion Studio')
     end
   
     scenario 'invalid admin/member' do
     # Login to Google
+    set_name("Non Member")
     visit '/admins/auth/google_oauth2'
-    
-    # Check page for non admin/member login
+    # Check page for non admin/member login    
     visit root_url
     expect(page).to have_content('You are not a member')
+    set_name("Cristian Avalos")
     end
 end

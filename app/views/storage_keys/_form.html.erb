@@ -1,3 +1,5 @@
+<%= render 'shared_partials/style' %>
+
 <%= form_with(model: storage_key) do |form| %>
   <% if storage_key.errors.any? %>
     <div id="error_explanation">
@@ -13,10 +15,10 @@
 
   <div class="field">
     <%= form.label :user_id %>
-    <%= form.number_field :user_id %>
+    <%= form.collection_select(:user_id, User.all, :id, :first_and_last_name) %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit class:'btn btn-primary a-primary' %>
   </div>
 <% end %>
