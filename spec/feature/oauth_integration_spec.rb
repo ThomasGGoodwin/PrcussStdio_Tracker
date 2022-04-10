@@ -53,10 +53,11 @@ RSpec.describe 'Sign In', type: :feature do
   
     scenario 'invalid admin/member' do
     # Login to Google
+    set_name("Non Member")
     visit '/admins/auth/google_oauth2'
-    
-    # Check page for non admin/member login
+    # Check page for non admin/member login    
     visit root_url
     expect(page).to have_content('You are not a member')
+    set_name("Cristian Avalos")
     end
 end
