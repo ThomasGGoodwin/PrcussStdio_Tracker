@@ -24,8 +24,8 @@
   </div>
   
   <div class="field">
-    <%= form.label "Instruments" %>
-    <%= form.collection_check_boxes :instrument_ids, Instrument.all, :id, :name %>
+    <%= form.label :instrument_ids, "Instrument" %>
+    <%= form.collection_check_boxes(:instrument_ids, Instrument.all, :id, :name) %>
   </div>
 
   <div class="field">

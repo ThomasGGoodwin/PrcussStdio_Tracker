@@ -2,7 +2,7 @@ class Rsvp < ApplicationRecord
     #relationships 
     #belongs_to :user
     #belongs_to :event
-    has_many :instrument
+    has_and_belongs_to_many :instrument
 
     validates :user_id, presence: true, allow_blank: false
     validates :event_id, presence: true, allow_blank: false
