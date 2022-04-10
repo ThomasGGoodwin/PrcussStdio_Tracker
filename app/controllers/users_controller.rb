@@ -1,14 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[ show edit update destroy ]
 
-  def check_status
-    unless params[:id].to_i == session[:id]
-      flash[:notice] = "You don't have access to that page!"
-      redirect_to request.referer
-      return
-    end
-  end
-
   # GET /users or /users.json
   def index
     @users = User.all

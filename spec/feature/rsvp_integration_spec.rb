@@ -12,6 +12,7 @@ RSpec.describe 'Creating a rsvp', type: :feature do
 
   scenario 'valid input: attending' do
     # Login to Google
+    user1
     visit '/admins/auth/google_oauth2'
 
     # Find event to RSVP
@@ -26,7 +27,7 @@ RSpec.describe 'Creating a rsvp', type: :feature do
 
     # Check page for created event
     visit rsvps_path
-    expect(page).to have_content('avalos672918@tamu.edu')
+    expect(page).to have_content('email1@tamu.edu')
     expect(page).to have_content('EventTest')
     expect(page).to have_content('Snare')
     expect(page).to have_content('Quads')
@@ -48,7 +49,7 @@ RSpec.describe 'Creating a rsvp', type: :feature do
 
     # Check page for created event
     visit rsvps_path
-    expect(page).to have_content('avalos672918@tamu.edu')
+    expect(page).to have_content('email1@tamu.edu')
     expect(page).to have_content('EventTest')
     expect(page).to have_content('Snare')
     expect(page).to have_content('false')

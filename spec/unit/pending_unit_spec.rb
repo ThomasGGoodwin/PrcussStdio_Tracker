@@ -25,10 +25,10 @@ RSpec.describe User, type: :model do
         expect(subject).not_to be_valid
     end
 
-    # it 'is not valid without an email' do
-    #     subject.email = nil
-    #     expect(subject).not_to be_valid
-    # end
+    it 'is not valid without an email' do
+        subject.email = nil
+        expect(subject).not_to be_valid
+    end
 
     it 'is not valid without a role' do
         subject.role = nil
