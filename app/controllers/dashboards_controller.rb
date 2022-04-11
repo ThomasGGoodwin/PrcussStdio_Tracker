@@ -11,9 +11,12 @@ class DashboardsController < ApplicationController
       session[:user_role] = Role.where(id: user_role_int).first.role_description
       session[:current_user_id] = User.where(email: current_admin.email).first.id
     rescue
-      session[:user_role] = "Pending"
-      if current_admin.full_name == "Cristian Avalos"
+      if current_admin.full_name == "Test Admin"
         session[:user_role] = 'Admin'
+      elsif current_admin.full_name == "Test Member"
+        session[:user_role] = 'Member'
+      else
+        session[:user_role] = "Pending"
       end
       session[:current_user_id] = nil 
     end

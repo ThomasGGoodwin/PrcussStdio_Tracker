@@ -4,7 +4,7 @@ require 'rails_helper'
 RSpec.describe 'Pending User', type: :feature do
     scenario 'pending user' do
         # Login to Google
-        user1
+        admin_user
         visit '/admins/auth/google_oauth2'
 
         # Create Roles
@@ -34,7 +34,7 @@ RSpec.describe 'Pending User', type: :feature do
         destroy_admin_session_path
 
         # Login to Google
-        user2
+        nonmember_user
         visit '/admins/auth/google_oauth2'
 
         # Submit Pending User
@@ -49,7 +49,7 @@ RSpec.describe 'Pending User', type: :feature do
         destroy_admin_session_path
 
         # Login to Google
-        user1
+        admin_user
         visit '/admins/auth/google_oauth2'
 
         visit users_path

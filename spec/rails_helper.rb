@@ -62,44 +62,13 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
 
-name = "Cristian Avalos"
-def set_name(n)
-    name = n
-    OmniAuth.config.mock_auth[:google_oauth2] = OmniAuth::AuthHash.new({
-      :provider => "google_oauth2",
-      :uid => "123456789",
-      :info => {
-        :name => name,
-        :email => "avalos672918@tamu.edu"
-      },
-      :credentials => {
-        :token => "token",
-        :refresh_token => "refresh token"
-      }
-    })
-end
-
-  OmniAuth.config.test_mode = true
-  OmniAuth.config.mock_auth[:google_oauth2] = OmniAuth::AuthHash.new({
-      :provider => "google_oauth2",
-      :uid => "123456789",
-      :info => {
-        :name => name,
-        :email => "avalos672918@tamu.edu"
-      },
-      :credentials => {
-        :token => "token",
-        :refresh_token => "refresh token"
-      }
-  })
-
-  def user1
+  def admin_user
     OmniAuth.config.test_mode = true
     OmniAuth.config.mock_auth[:google_oauth2] = OmniAuth::AuthHash.new({
         :provider => "google_oauth2",
         :uid => "123456789",
         :info => {
-          :name => "Test User1",
+          :name => "Test Admin",
           :email => "email1@tamu.edu"
         },
         :credentials => {
@@ -109,13 +78,29 @@ end
     })
   end
 
-  def user2
+  def member_user
     OmniAuth.config.test_mode = true
     OmniAuth.config.mock_auth[:google_oauth2] = OmniAuth::AuthHash.new({
         :provider => "google_oauth2",
         :uid => "987654321",
         :info => {
-          :name => "Test User2",
+          :name => "Test Member",
+          :email => "email2@tamu.edu"
+        },
+        :credentials => {
+          :token => "token",
+          :refresh_token => "refresh token"
+        }
+    })
+  end
+
+  def nonmember_user
+    OmniAuth.config.test_mode = true
+    OmniAuth.config.mock_auth[:google_oauth2] = OmniAuth::AuthHash.new({
+        :provider => "google_oauth2",
+        :uid => "987654321",
+        :info => {
+          :name => "Test NonMember",
           :email => "email2@tamu.edu"
         },
         :credentials => {
