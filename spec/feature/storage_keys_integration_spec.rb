@@ -73,7 +73,7 @@ RSpec.describe 'Editing a storage key', type: :feature do
 
     # Edit new storage key
     visit storage_keys_path
-    click_on 'Edit'
+    click_on 'Transfer Ownership'
     select 'Luke Yocum', :from => 'storage_key_user_id'
     click_on 'Update Storage key'
 

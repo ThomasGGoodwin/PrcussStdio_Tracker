@@ -18,7 +18,7 @@
         <td><%= first_and_last_show(storage_key.user_id) %></td>
         <td><%= link_to 'Show', storage_key %></td>
         <% if session[:user_role] == 'Admin' || session[:current_user_id] == storage_key.user_id.to_i %>
-          <td><%= link_to 'Edit', edit_storage_key_path(storage_key) %></td>
+          <td><%= link_to 'Transfer Ownership', edit_storage_key_path(storage_key) %></td>
         <% end %>
         <% if session[:user_role] == 'Admin' %>
           <td><%= link_to 'Destroy', storage_key, method: :delete, data: { confirm: 'Are you sure?' } %></td>
