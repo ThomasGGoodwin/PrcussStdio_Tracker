@@ -15,8 +15,9 @@
     <%= link_to 'Storage Keys', storage_keys_path %><br>
 
     <%= link_to "Sign Out", destroy_admin_session_path %>
-<% else %>
+<% elsif session[:user_role] == 'Pending' %>
     <h3>You are not a member, <%= current_admin.full_name -%></h3>
+    <%= link_to "Request to join", new_pending_path %> | 
 
     <%= link_to "Back", destroy_admin_session_path %>
 <% end %>

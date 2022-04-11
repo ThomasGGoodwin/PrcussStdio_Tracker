@@ -10,7 +10,7 @@ RSpec.describe 'Viewing the report with a created User', type: :feature do
     # Login to Google
     visit '/admins/auth/google_oauth2'
 
-    #create the role for user
+    # create the role for user
     visit new_role_path
     fill_in 'Role description', with: 'TestRole'
     click_on 'Create Role'
@@ -42,7 +42,7 @@ RSpec.describe 'Viewing the report with a created User', type: :feature do
     # Login to Google
     visit '/admins/auth/google_oauth2'
 
-    #create the role for user
+    # create the role for user
     visit new_role_path
     fill_in 'Role description', with: 'TestRole'
     click_on 'Create Role'

@@ -25,5 +25,9 @@
   <%= Role.where(id: @user.role_id).last.role_description %>
 </p>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<% if session[:user_role] == 'Admin' %>
+  <%= link_to 'Edit', edit_user_path(@user) %> |
+  <%= link_to 'Back', users_path %>
+<% elsif session[:user_role] == 'Pending' %>
+  <%= link_to 'Back', root_url %>
+<% end %>
