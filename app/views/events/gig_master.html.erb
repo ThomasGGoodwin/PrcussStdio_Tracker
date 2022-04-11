@@ -7,6 +7,7 @@
       <th>Name</th>
       <th>Email</th>
       <th>Instruments</th>
+      <th>Other Information</th>
     </tr>
   </thead>
 
@@ -16,7 +17,8 @@
       <tr>
         <td><%= user.first_name %><%= ' ' %><%= user.last_name %></td>
         <td><%= user.email %></td>
-        <td><%= Instrument.where(id: rsvp.instrument_ids).pluck(:name) %></td>
+        <td><%= Instrument.where(id: rsvp.instrument_ids).pluck(:name).join(", ") %></td>
+        <td><%= rsvp.reason %></td>
       </tr>
     <% end %>
   </tbody>
@@ -88,6 +90,25 @@
         <td><%= user.first_name + ' ' + user.last_name %></td>
         <td><%= user.email %></td>
         <td><%= rsvp.reason %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<h3>Users who did not RSVP</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>email</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @no_rsvp_users.each do |user| %>
+      <tr>
+        <td><%= user.first_name + ' ' + user.last_name %></td>
+        <td><%= user.email %></td>
       </tr>
     <% end %>
   </tbody>

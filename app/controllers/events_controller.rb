@@ -63,6 +63,13 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     @attending_rsvps = Rsvp.where(event_id: @event.id, attending: true)
     @not_attending_rsvps = Rsvp.where(event_id: @event.id, attending: false)
+
+    query_str = ""
+    Rsvp.where(event_id: @event.id).each do |rsvp|
+      query_str += "email != \'" + rsvp.user_id + "\' and "
+    end
+    @no_rsvp_users = User.where(query_str[0..-6])
+    
     if params[:selected_emails_str].present?
       params[:selected_emails] = params[:selected_emails_str].split(", ")
     end
