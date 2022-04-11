@@ -26,15 +26,16 @@
   </div>
   
   <div class="field">
-    <%= form.label "Instruments" %>
-    <%= form.collection_check_boxes :instrument_ids, Instrument.all, :id, :name %>
+    <%= form.label :instrument_ids, "Instrument" %>
+    <%= form.collection_check_boxes(:instrument_ids, Instrument.all, :id, :name) %>
   </div>
 
   <div class="field">
     <%= form.label :attending %>
     <%= form.check_box :attending %>
   </div>
-
+  <div>Only explicitely required if you are not attending this event</div>
+  <div>If there is anything else that we should know about your attendance, or if you are on-call, put that here.</div>
   <div class="field">
     <%= form.label :reason %>
     <%= form.text_area :reason %>

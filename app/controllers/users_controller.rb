@@ -16,6 +16,11 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
+  # GET /users/new_pending
+  def new_pending
+    @user = User.new
+  end
+
   # GET /users/1/edit
   def edit
   end
@@ -58,7 +63,7 @@ class UsersController < ApplicationController
     end
   end
 
-  #attendance report /users/attendance_report
+  # attendance report /users/attendance_report
   def attendance_report
     @users = User.all
     if params[:credit].present?
