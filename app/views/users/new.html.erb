@@ -1,5 +1,13 @@
-<h1>New User</h1>
+<% if session[:user_role] == 'Admin' %>
+    <h1>New User</h1>
+<% elsif session[:user_role] == 'Pending' %>
+    <h1>Request to Join</h1>
+<% end %>
 
 <%= render 'form', user: @user %>
 
-<%= link_to 'Back', users_path %>
+<% if session[:user_role] == 'Admin' %>
+    <%= link_to 'Back', users_path %>
+<% else %>
+    <%= link_to 'Back', root_url %>
+<% end %>
