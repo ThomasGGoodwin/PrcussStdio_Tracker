@@ -21,7 +21,7 @@
         <td><%= get_user_name(rsvp.user_id) %></td>
         <td><%= Event.where(id: rsvp.event_id).first.name %></td>
         <td><%= rsvp.rsvp_time %></td>
-        <td><%= Instrument.where(id: rsvp.instrument_ids).pluck(:name) %></td>
+        <td><%= rsvp.instrument.pluck(:name).join(', ') %></td>
         <td><%= rsvp.attending %></td>
         <td><%= rsvp.reason %></td>
         <td><%= link_to 'Show', rsvp %></td>
