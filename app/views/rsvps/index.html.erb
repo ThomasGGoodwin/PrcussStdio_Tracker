@@ -19,7 +19,7 @@
     <% @rsvps.each do |rsvp| %>
       <tr>
         <td><%= get_user_name(rsvp.user_id) %></td>
-        <td><%= Event.where(id: rsvp.event_id).first.name %></td>
+        <td><%= Event.exists?(rsvp.event_id) ? Event.where(id: rsvp.event_id).first.name : 'Event Not Found' %></td>
         <td><%= rsvp.rsvp_time %></td>
         <td><%= rsvp.instrument.pluck(:name).join(', ') %></td>
         <td><%= rsvp.attending %></td>

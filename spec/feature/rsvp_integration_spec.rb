@@ -326,3 +326,34 @@ RSpec.describe 'RSVP button toggle', type: :feature do
     expect(page).to have_no_content('RSVP')
   end
 end
+
+RSpec.describe 'Rsvps event is deleted', type: :feature do
+
+  before do
+    EventType.create(id: 1, description: 'Test')
+    Event.create(event_type_id: 1, name: 'EventTest', start_time: '2050-02-17 01:01:00', end_time: '2050-02-17 02:01:00', location: 'LocationTest', description: 'DescriptionTest')
+    Instrument.create(name: 'Snare') 
+    Instrument.create(name: 'Quads')
+  end
+
+  scenario 'success' do
+    # Login to Google
+    visit '/admins/auth/google_oauth2'
+
+    # Find event to RSVP
+    visit events_path
+    click_on 'RSVP'
+
+    # Create new rsvp
+    check('Snare', allow_label_click: true)
+    check('rsvp_attending', allow_label_click: true)
+    click_on 'Create Rsvp'
+
+    # Delete event
+    Event.where(name: 'EventTest').first.destroy
+
+    # Check for empty name
+    visit rsvps_path
+    expect(page).to have_content('Event Not Found')
+  end
+end
