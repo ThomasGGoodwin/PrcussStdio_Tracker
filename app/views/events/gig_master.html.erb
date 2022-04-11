@@ -1,0 +1,117 @@
+<h2>Select Users to attend this event: <%= @event.name %></h2>
+
+<h3>Attending Users</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Instruments</th>
+      <th>Other Information</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @attending_rsvps.each do |rsvp| %>
+      <% user = User.find_by(email: rsvp.user_id) %>
+      <tr>
+        <td><%= user.first_name %><%= ' ' %><%= user.last_name %></td>
+        <td><%= user.email %></td>
+        <td><%= Instrument.where(id: rsvp.instrument_ids).pluck(:name).join(", ") %></td>
+        <td><%= rsvp.reason %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<h3>Invite details</h3>
+<%= form_tag do |form| %>
+  <h4>Users</h4>
+  <%= hidden_field_tag(:send, false) %>
+  <%= select_tag(:selected_emails, options_from_collection_for_select(@attending_rsvps, 'user_id', 'user_id'), multiple: true) %>
+  <h4>Other email text (event details will automatically be included, put other specifics here)</h4>
+  <%= text_area_tag(:message) %>
+  <%= submit_tag('Update Email Details') %>
+<% end %>
+
+<% if params[:selected_emails].present? %>
+  <h3>Confirm Email Details</h3>
+  <h4>Selected Users</h4>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% params[:selected_emails].each do |user_email| %>
+        <% user = User.find_by(email: user_email) %>
+        <tr>
+          <td><%= user.first_name + ' ' + user.last_name %></td>
+          <td><%= user.email %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <h4>Email Body</h4>
+  <% email_text = @event.email_string + "\n\n" + params[:message]%>
+  <%= safe_join(email_text.split("\n"), "<br />".html_safe) %>
+  <br> 
+  <% if params[:send] == "false" %>
+    <%= form_tag do |form| %>
+      <%= hidden_field_tag(:send, true) %>
+      <%= hidden_field_tag(:message, params[:message]) %>
+      <%= hidden_field_tag(:selected_emails_str, params[:selected_emails].join(", ")) %>
+      <%= submit_tag('Send email') %>
+    <% end %>
+  <% else %>
+    <h3>Email sent!</h3>
+    <%= link_to "Back", events_path%>
+  <% end %>
+  
+<% end %>
+
+<h3>Not Attending Users</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>email</th>
+      <th>reason</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @not_attending_rsvps.each do |rsvp| %>
+      <% user = User.find_by(email: rsvp.user_id) %>
+      <tr>
+        <td><%= user.first_name + ' ' + user.last_name %></td>
+        <td><%= user.email %></td>
+        <td><%= rsvp.reason %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<h3>Users who did not RSVP</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>email</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @no_rsvp_users.each do |user| %>
+      <tr>
+        <td><%= user.first_name + ' ' + user.last_name %></td>
+        <td><%= user.email %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Back', events_path %>
