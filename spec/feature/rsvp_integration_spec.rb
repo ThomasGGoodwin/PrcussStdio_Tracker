@@ -287,7 +287,7 @@ RSpec.describe 'RSVP button toggle', type: :feature do
     expect(page).to have_no_content('RSVP')
   end
 
-  scenario 'has rsvp\'d and attending' do
+  scenario 'has rsvp\'d and not attending' do
     # Login to Google
     visit '/admins/auth/google_oauth2'
 
