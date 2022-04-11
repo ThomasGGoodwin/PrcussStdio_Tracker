@@ -9,4 +9,12 @@ module EventsHelper
         end
         content.html_safe
     end
+
+    def check_priviledges_gigmaster(role)
+        if role == 'Admin'
+            render 'gig_master'
+        else 
+            render 'shared_partials/invalid_access'
+        end
+    end
 end

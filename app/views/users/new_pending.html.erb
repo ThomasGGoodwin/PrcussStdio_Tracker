@@ -1,5 +1,10 @@
-<h1>Request to Join</h1>
+<%= render 'shared_partials/style'%>
+<%= render 'shared_partials/non-member_nav'%>
 
-<%= render 'pending_form', user: @user %>
+<div class="jumbotron" style="background-color:white">
+    <h1>Request to Join</h1>
 
-<%= link_to 'Back', root_url %>
+    <%= render 'pending_form', user: @user %>
+
+    <%= link_to 'Back', root_url, class:"btn btn-secondary a-primary" %>
+</div>

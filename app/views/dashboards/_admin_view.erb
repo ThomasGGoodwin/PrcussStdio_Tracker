@@ -17,7 +17,7 @@
                 <th>End time</th>
                 <th>Location</th>
                 <th>Description</th>
-                <th colspan="3"></th>
+                <th colspan="5"></th>
                 </tr>
             </thead>
 
@@ -30,10 +30,11 @@
                     <td><%= event.end_time %></td>
                     <td><%= event.location %></td>
                     <td><%= event.description %></td>
-                    <td><%= toggle_signup_button(current_admin.uid, event.id) %></td>
+                    <td><%= toggle_signup_button(current_admin.email, event.id) %></td>
                     <td><%= link_to 'Show', event, class:'a-CRUD' %></td>
                     <td><%= link_to 'Edit', edit_event_path(event), class:'a-CRUD' %></td>
                     <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' }, class:'a-CRUD' %></td>
+                    <td><%= link_to 'Invite Users', gig_master_url(event), class:'a-CRUD' %></td>
                 </tr>
                 <% end %>
             </tbody>
@@ -47,7 +48,7 @@
     <br>
     <br>
 
-    <div class="jumbotron jumbotron-fluid" style="background-color=white">
+    <div class="jumbotron jumbotron-fluid">
         <%= month_calendar(attribute: :start_time, events: @events) do |date, events| %>
         <%= date.day %>
 
