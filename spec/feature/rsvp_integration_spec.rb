@@ -248,7 +248,7 @@ RSpec.describe 'RSVP button toggle', type: :feature do
     expect(page).to have_no_content('Change Status')
   end
 
-  scenario 'has rsvp\'d' do
+  scenario 'has rsvp\'d and attending' do
     # Login to Google
     visit '/admins/auth/google_oauth2'
 
@@ -283,7 +283,77 @@ RSpec.describe 'RSVP button toggle', type: :feature do
 
     # Check event for rsvp button
     visit events_path
-    expect(page).to have_content('Change Status')
+    expect(page).to have_content('Change Status: Attending')
     expect(page).to have_no_content('RSVP')
+  end
+
+  scenario 'has rsvp\'d and not attending' do
+    # Login to Google
+    visit '/admins/auth/google_oauth2'
+
+    #create new event_type
+    visit new_event_type_path
+    fill_in 'Description', with: 'EventTypeTest'
+    click_on 'Create Event type'
+
+    # Create new event
+    visit new_event_path
+    select 'EventTypeTest', :from => 'event_event_type_id'
+    fill_in 'Name', with: 'EventTest'
+    select '2022', :from => 'event_start_time_1i'
+    select 'February', :from => 'event_start_time_2i'
+    select '17', :from => 'event_start_time_3i'
+    select '20', :from => 'event_start_time_4i'
+    select '19', :from => 'event_start_time_5i'
+    select '2023', :from => 'event_end_time_1i'
+    select 'April', :from => 'event_end_time_2i'
+    select '14', :from => 'event_end_time_3i'
+    select '01', :from => 'event_end_time_4i'
+    select '00', :from => 'event_end_time_5i'
+    fill_in 'Location', with: 'LocationTest'
+    fill_in 'Description', with: 'DescriptionTest'
+    click_on 'Create Event'
+
+    # RSVP
+    visit events_path
+    click_on 'RSVP'
+    fill_in 'Reason', with: 'test'
+    click_on 'Create Rsvp'
+
+    # Check event for rsvp button
+    visit events_path
+    expect(page).to have_content('Change Status: Not Attending')
+    expect(page).to have_no_content('RSVP')
+  end
+end
+
+RSpec.describe 'Rsvps event is deleted', type: :feature do
+
+  before do
+    EventType.create(id: 1, description: 'Test')
+    Event.create(event_type_id: 1, name: 'EventTest', start_time: '2050-02-17 01:01:00', end_time: '2050-02-17 02:01:00', location: 'LocationTest', description: 'DescriptionTest')
+    Instrument.create(name: 'Snare') 
+    Instrument.create(name: 'Quads')
+  end
+
+  scenario 'success' do
+    # Login to Google
+    visit '/admins/auth/google_oauth2'
+
+    # Find event to RSVP
+    visit events_path
+    click_on 'RSVP'
+
+    # Create new rsvp
+    check('Snare', allow_label_click: true)
+    check('rsvp_attending', allow_label_click: true)
+    click_on 'Create Rsvp'
+
+    # Delete event
+    Event.where(name: 'EventTest').first.destroy
+
+    # Check for empty name
+    visit rsvps_path
+    expect(page).to have_content('Event Not Found')
   end
 end
