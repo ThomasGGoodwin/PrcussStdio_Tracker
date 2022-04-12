@@ -3,6 +3,16 @@
 <div class="jumbotron" style="background-color:white">
   <h1>Attendance Report</h2>
 
+  <div>
+    <p>The attendance credit requirement is currently set to <%= @attendance_credit %> credits.</p>
+    <%= form_tag do |form| %>
+      <%= text_field_tag(:credit) %>
+      <%= submit_tag("Change Credit Requirement", :class=>'btn btn-primary a-primary') %>
+    <% end %>
+    <br>
+  </div>
+
+
   <div class="table-responsive">
     <table class="table">
       <thead>
@@ -27,11 +37,10 @@
             <td><%= Rsvp.where(user_id: user.email, attending: true).count %></td>
             <% # compares above number to local variable to decide if requirement is met or not %>
             <% if Rsvp.where(user_id: user.email, attending: true).count < @attendance_credit %>
-              <td>No</td>
+              <td style="color:red">No</td>
             <% else %>
-              <td>Yes</td>
+              <td><strong>Yes</strong></td>
             <% end %>
-            <td><%= link_to 'Show', user, class:"a-CRUD" %></td>
           </tr>
         <% end %>
       </tbody>
@@ -41,12 +50,6 @@
     </table>
   </div>
 
-  <p>The attendance credit requirement is currently set to <%= @attendance_credit %> credits.</p>
-
-  <%= form_tag do |form| %>
-    <%= text_field_tag(:credit) %>
-    <%= submit_tag("Change Credit Requirement", :class=>'btn btn-primary a-primary') %>
-  <% end %>
   <br>
   <%= link_to 'Back', users_path, class:'btn btn-secondary a-primary' %>
 </div>

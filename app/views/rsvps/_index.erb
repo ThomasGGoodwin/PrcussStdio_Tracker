@@ -3,7 +3,7 @@
 <div class="jumbotron" style="background-color:white">
   <p id="notice"><%= notice %></p>
 
-  <h1>Rsvps</h1>
+  <h1>RSVPs</h1>
 
   <div class="table-responsive">
     <table class="table">
@@ -25,7 +25,7 @@
             <td><%= get_user_name(rsvp.user_id) %></td>
             <td><%= Event.where(id: rsvp.event_id).first.name %></td>
             <td><%= rsvp.rsvp_time %></td>
-            <td><%= Instrument.where(id: rsvp.instrument_ids).pluck(:name) %></td>
+            <td><%= Instrument.where(id: rsvp.instrument_ids).pluck(:name).join(", ") %></td>
             <td><%= rsvp.attending %></td>
             <td><%= rsvp.reason %></td>
             <td><%= link_to 'Show', rsvp, class:"a-CRUD" %></td>

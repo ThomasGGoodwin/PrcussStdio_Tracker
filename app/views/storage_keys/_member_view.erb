@@ -20,17 +20,12 @@
                     <td><%= storage_key.id %></td>
                     <td><%= first_and_last_show(storage_key.user_id) %></td>
                     <td><%= link_to 'Show', storage_key, class:'a-CRUD' %></td>
-                    <td><%= owner_of_key(session[:current_user_id], storage_key.user_id) %></td>
+                    <td><%= owner_of_key(session[:current_user_id], storage_key.user_id, storage_key.id) %></td>
                 </tr>
                 <% end %>
             </tbody>
         </table>
     </div>
-
-    <br>
-    <% if session[:user_role] == 'Admin' %>
-    <%= link_to 'New Storage Key', new_storage_key_path, class:"btn btn-primary a-primary" %>
-    <% end %>
     <br><br>
     <%= link_to 'Back', root_url, class:"btn btn-secondary a-primary" %>
 </div>
