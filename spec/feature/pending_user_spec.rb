@@ -39,7 +39,7 @@ RSpec.describe 'Pending User', type: :feature do
 
         # Submit Pending User
         visit new_pending_path
-        click_on 'Create User'
+        click_on 'Request'
 
         visit root_url
         expect(page).to have_content('You are not a member')

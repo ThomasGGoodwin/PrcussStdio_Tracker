@@ -29,9 +29,7 @@
     </div>
 
     <br>
-    <% if session[:user_role] == 'Admin' %>
     <%= link_to 'New Storage Key', new_storage_key_path, class:"btn btn-primary a-primary" %>
-    <% end %>
     <br><br>
     <%= link_to 'Back', root_url, class:'btn btn-secondary a-primary' %>
 </div>
