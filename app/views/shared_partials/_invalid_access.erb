@@ -1,11 +1,6 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-secondary">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+<%= render 'shared_partials/style'%>
+<%= render 'shared_partials/non-member_nav'%>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">  
-    </div>
-</nav>
 <div class="jumbotron" style="background-color:white">
     <h2>Sorry, you do not have have access to this page</h2>
     <%= link_to 'Home', root_url, class:"btn btn-primary a-primary" %>

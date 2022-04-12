@@ -7,10 +7,10 @@ module StorageKeysHelper
     end
 
     #check if the current user is the owner of the key
-    def owner_of_key(user_id, key_id)
-        key_id = key_id.to_i
-        if user_id == key_id
-            link_to 'Edit', edit_storage_key_path(key_id), class:'a-CRUD'
+    def owner_of_key(user_id, user_key_id, key_id)
+        user_key_id = user_key_id.to_i
+        if user_id == user_key_id
+            link_to 'Transfer', edit_storage_key_path(key_id), class:'a-CRUD'
         end
     end
 

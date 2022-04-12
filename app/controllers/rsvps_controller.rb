@@ -38,7 +38,7 @@ class RsvpsController < ApplicationController
   def update
     respond_to do |format|
       if @rsvp.update(rsvp_params) && valid_reason?
-        format.html { redirect_to events_path, notice: "Rsvp was successfully updated." }
+        format.html { redirect_to root_url, notice: "Rsvp was successfully updated." }
         format.json { render :show, status: :ok, location: @rsvp }
       else
         format.html { render :edit, status: :unprocessable_entity }

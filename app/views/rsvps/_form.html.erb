@@ -26,18 +26,25 @@
   </div>
   
   <div class="field">
-    <%= form.label "Instruments" %>
-    <%= form.collection_check_boxes :instrument_ids, Instrument.all, :id, :name %>
+    <strong><%= form.label :instrument_ids, "Instrument: " %></strong>
+    <br>
+     <%= form.collection_check_boxes(:instrument_ids, Instrument.all, :id, :name) do |b| %>
+        <%= b.label class:"label-checkbox" do%>
+         <%= b.check_box + " " + b.text%>
+        <%end%> <br>
+    <% end %>
   </div>
 
   <div class="field">
-    <%= form.label :attending %>
+    <strong><%= form.label :attending %></strong>
     <%= form.check_box :attending %>
   </div>
-
   <div class="field">
-    <%= form.label :reason %>
-    <%= form.text_area :reason %>
+    <strong><%= form.label :reason %></strong>
+    <p style="font-style:italic">Only explicitly required if you are not attending this event <br>If there is anything else that we should know about your attendance, or if you are on-call, put that here.</p>
+    <%= form.text_area :reason, class:'form-control', rows:3 %>
+    <%#= text_area_tag :reason, "", class: 'form-control', rows:3 %>
+
   </div>
 
   <div class="actions">

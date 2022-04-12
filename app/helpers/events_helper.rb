@@ -9,4 +9,41 @@ module EventsHelper
         end
         content.html_safe
     end
+
+    def check_priviledges_gigmaster(role)
+        if role == 'Admin'
+            render 'gig_master'
+        else 
+            render 'shared_partials/invalid_access'
+        end
+    end
+
+    def check_priviledges_events(role, page)
+        if role == 'Admin'
+            if page == 'new'
+                render 'new'
+            elsif page == 'edit'
+                render 'edit'
+            elsif page == 'show'
+                render 'show'
+                
+            end
+        elsif role == 'Member'
+            if page == 'show'
+                render 'show'
+            else
+                render 'shared_partials/invalid_access'
+            end
+        else 
+            render 'shared_partials/invalid_access'
+        end
+    end
+
+    def proper_nav(role)
+        if role == 'Admin'
+            render 'shared_partials/admin_nav'
+        elsif role == 'Member'
+            render 'shared_partials/member_nav'
+        end
+    end
 end

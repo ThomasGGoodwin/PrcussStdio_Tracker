@@ -1,8 +1,8 @@
 <%= render 'shared_partials/admin_nav' %>
 
+<div class="jumbotron" style="background-color:white">
 <p id="notice"><%= notice %></p>
 
-<div class="jumbotron" style="background-color:white">
     <h1>Storage Keys</h1>
     <div class="table-responsive">
         <table class="table">
@@ -20,7 +20,7 @@
                     <td><%= storage_key.id %></td>
                     <td><%= first_and_last_show(storage_key.user_id) %></td>
                     <td><%= link_to 'Show', storage_key, class:'a-CRUD' %></td>
-                    <td><%= link_to 'Edit', edit_storage_key_path(storage_key), class:'a-CRUD' %></td>
+                    <td><%= link_to 'Transfer', edit_storage_key_path(storage_key), class:'a-CRUD' %></td>
                     <td><%= link_to 'Destroy', storage_key, method: :delete, data: { confirm: 'Are you sure?' }, class:'a-CRUD' %></td>
                 </tr>
                 <% end %>

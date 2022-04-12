@@ -5,6 +5,7 @@
         </button>
     </nav>
     <div class="jumbotron" style="background-color:white">
-        <h3>You are not a member, <%= current_admin.full_name -%></h3>  
-        <%= link_to "Back", destroy_admin_session_path, class: "btn btn-primary a-primary" %>
+        <h3>You are not a member, <%= current_admin.full_name -%></h3>
+        <%= link_to "Request to join", new_pending_path, class: "btn btn-primary a-primary" %>  
+        <%= link_to "Back", destroy_admin_session_path, class: "btn btn-secondary a-primary" %>
     </div>

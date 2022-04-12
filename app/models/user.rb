@@ -1,12 +1,13 @@
 class User < ApplicationRecord
-    #relationships
+    # relationships
     belongs_to :role 
     has_one :storage_key
     has_many :rsvps
     
     validates :first_name, presence: true, allow_blank: false
     validates :last_name, presence: true, allow_blank: false
-    validates :email, presence: true, allow_blank: false
+    validates_uniqueness_of :email, presence: true, allow_blank: false
+    validates_presence_of :email
     validates :role_id, presence: true, allow_blank: false
 
     #grabs the first and last name for the form
