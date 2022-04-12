@@ -1,3 +1,5 @@
+<%= render 'shared_partials/style' %>
+
 <%= form_with(model: event_type) do |form| %>
   <% if event_type.errors.any? %>
     <div id="error_explanation">
@@ -17,6 +19,6 @@
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit class:"btn btn-primary a-primary" %>
   </div>
 <% end %>

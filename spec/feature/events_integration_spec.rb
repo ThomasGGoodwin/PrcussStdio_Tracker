@@ -4,7 +4,25 @@ require 'rails_helper'
 RSpec.describe 'Creating an event', type: :feature do
   scenario 'valid inputs' do
     # Login to Google
+    admin_user
     visit '/admins/auth/google_oauth2'
+
+    # Create Role
+    visit roles_path
+    visit new_role_path
+    fill_in 'Role description', with: 'Admin'
+    click_on 'Create Role'
+
+    # Create User
+    visit root_url
+    visit users_path
+    visit new_user_path
+    fill_in 'First name', with: 'Cristian'
+    fill_in 'Last name', with: 'Avalos'
+    fill_in 'Email', with: 'avalos672918@tamu.edu'
+    select 'Admin', :from => 'user_role_id'
+    click_on 'Create User'
+    visit root_url
 
     #create new event_type
     visit new_event_type_path
@@ -47,6 +65,23 @@ RSpec.describe 'Editing an event', type: :feature do
   scenario 'valid inputs' do
     # Login to Google
     visit '/admins/auth/google_oauth2'
+
+    # Create Role
+    visit roles_path
+    visit new_role_path
+    fill_in 'Role description', with: 'Admin'
+    click_on 'Create Role'
+
+    # Create User
+    visit root_url
+    visit users_path
+    visit new_user_path
+    fill_in 'First name', with: 'Cristian'
+    fill_in 'Last name', with: 'Avalos'
+    fill_in 'Email', with: 'avalos672918@tamu.edu'
+    select 'Admin', :from => 'user_role_id'
+    click_on 'Create User'
+    visit root_url
 
     #create new event_types
     visit new_event_type_path
@@ -107,6 +142,23 @@ RSpec.describe 'Editing an event', type: :feature do
     # Login to Google
     visit '/admins/auth/google_oauth2'
 
+    # Create Role
+    visit roles_path
+    visit new_role_path
+    fill_in 'Role description', with: 'Admin'
+    click_on 'Create Role'
+
+    # Create User
+    visit root_url
+    visit users_path
+    visit new_user_path
+    fill_in 'First name', with: 'Cristian'
+    fill_in 'Last name', with: 'Avalos'
+    fill_in 'Email', with: 'avalos672918@tamu.edu'
+    select 'Admin', :from => 'user_role_id'
+    click_on 'Create User'
+    visit root_url
+
      #create new event_types
      visit new_event_type_path
      fill_in 'Description', with: 'EventTypeTest'
@@ -160,6 +212,23 @@ RSpec.describe 'Deleting an event', type: :feature do
     # Login to Google
     visit '/admins/auth/google_oauth2'
 
+    # Create Role
+    visit roles_path
+    visit new_role_path
+    fill_in 'Role description', with: 'Admin'
+    click_on 'Create Role'
+
+    # Create User
+    visit root_url
+    visit users_path
+    visit new_user_path
+    fill_in 'First name', with: 'Cristian'
+    fill_in 'Last name', with: 'Avalos'
+    fill_in 'Email', with: 'avalos672918@tamu.edu'
+    select 'Admin', :from => 'user_role_id'
+    click_on 'Create User'
+    visit root_url
+    
     #create new event_type
     visit new_event_type_path
     fill_in 'Description', with: 'EventTypeTest'

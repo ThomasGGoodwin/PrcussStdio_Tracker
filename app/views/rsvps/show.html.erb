@@ -1,3 +1,7 @@
+<%= render 'shared_partials/style' %>
+<%= rsvp_navbar(session[:user_role]) %>
+
+<div class="jumbotron" style="background-color:white">
 <p id="notice"><%= notice %></p>
 
 <p>
@@ -25,5 +29,6 @@
   <%= @rsvp.reason %>
 </p>
 
-<%= link_to 'Edit', edit_rsvp_path(@rsvp) %> |
-<%= link_to 'Back', rsvps_path %>
+<%= link_to 'Edit', edit_rsvp_path(@rsvp), class:'btn btn-secondary a-primary' %>
+<%= rsvp_back(session[:user_role]) %>
+</div>

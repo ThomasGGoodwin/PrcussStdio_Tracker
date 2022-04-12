@@ -4,11 +4,14 @@ require 'rails_helper'
 RSpec.describe 'Viewing the report with a created User', type: :feature do
     #let!(:user) { User.create(first_name: 'Nassef', last_name: 'Ameen', email: 'nameen1@tamu.edu', role: 1)}
 
+    # may need to add a part of each scenario for creating an event and subsequent rsvp for the user to test that
+
    scenario 'valid inputs' do
     # Login to Google
+    admin_user
     visit '/admins/auth/google_oauth2'
 
-    #create the role for user
+    # create the role for user
     visit new_role_path
     fill_in 'Role description', with: 'TestRole'
     click_on 'Create Role'
@@ -27,15 +30,20 @@ RSpec.describe 'Viewing the report with a created User', type: :feature do
     # check page to have test user information
     expect(page).to have_content('Harry')
     expect(page).to have_content('Potter')
-    expect(page).to have_content(2)
+    expect(page).to have_content(0)
     expect(page).to have_content('No')
+
+    # Check credit change
+    fill_in 'credit', with: '0'
+    click_on 'Change Credit Requirement'
+    expect(page).to have_content('Yes')
    end
 
    scenario "empty inputs" do
     # Login to Google
     visit '/admins/auth/google_oauth2'
 
-    #create the role for user
+    # create the role for user
     visit new_role_path
     fill_in 'Role description', with: 'TestRole'
     click_on 'Create Role'
@@ -65,7 +73,12 @@ RSpec.describe 'Viewing the report with a created User', type: :feature do
     visit attendance_report_path
     expect(page).to have_content('Harry')
     expect(page).to have_content('Potter')
-    expect(page).to have_content(2)
+    expect(page).to have_content(0)
     expect(page).to have_content('No')
+
+    # Check credit change
+    fill_in 'credit', with: '0'
+    click_on 'Change Credit Requirement'
+    expect(page).to have_content('Yes')
    end
 end

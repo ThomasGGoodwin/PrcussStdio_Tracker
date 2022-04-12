@@ -1,0 +1,11 @@
+    <nav class="navbar navbar-expand-lg navbar-light bg-secondary">
+        <a class="navbar-brand white" href="#">Percussion Studio</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+    </nav>
+    <div class="jumbotron" style="background-color:white">
+        <h3>You are not a member, <%= current_admin.full_name -%></h3>
+        <%= link_to "Request to join", new_pending_path, class: "btn btn-primary a-primary" %>  
+        <%= link_to "Back", destroy_admin_session_path, class: "btn btn-secondary a-primary" %>
+    </div>

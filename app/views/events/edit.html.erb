@@ -1,6 +1,2 @@
-<h1>Editing Event</h1>
-
-<%= render 'form', event: @event %>
-
-<%= link_to 'Show', @event %> |
-<%= link_to 'Back', events_path %>
+<%= render 'shared_partials/style'%>
+<%= check_priviledges_events(session[:user_role], 'edit')%>

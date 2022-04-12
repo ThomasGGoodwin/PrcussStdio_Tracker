@@ -6,12 +6,10 @@ class EventsController < ApplicationController
     @events = Event.all
     @upcoming_events = Event.where("end_time > ?", DateTime.now) || [] 
     @past_events = Event.where("end_time <= ?", DateTime.now) || []
-    #@event_type_description = EventType.where(id: @event.event_type).limit(1).pluck(:description).first()
   end
 
   # GET /events/1 or /events/1.json
   def show
-    #@event_type_description = EventType.where(id: @event.event_type).limit(1).pluck(:description).first()
   end
 
   # GET /events/new
@@ -58,6 +56,25 @@ class EventsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to events_url, notice: "Event was successfully destroyed." }
       format.json { head :no_content }
+    end
+  end
+
+  def gig_master
+    @event = Event.find(params[:id])
+    @attending_rsvps = Rsvp.where(event_id: @event.id, attending: true)
+    @not_attending_rsvps = Rsvp.where(event_id: @event.id, attending: false)
+
+    query_str = ""
+    Rsvp.where(event_id: @event.id).each do |rsvp|
+      query_str += "email != \'" + rsvp.user_id + "\' and "
+    end
+    @no_rsvp_users = User.where(query_str[0..-6])
+    
+    if params[:selected_emails_str].present?
+      params[:selected_emails] = params[:selected_emails_str].split(", ")
+    end
+    if params[:send].present? && params[:send] == "true"
+      GigMailer.invite_email(@event.id, params[:message], params[:selected_emails]).deliver_now
     end
   end
 

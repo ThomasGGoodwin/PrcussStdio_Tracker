@@ -1,5 +1,2 @@
-<h1>New User</h1>
-
-<%= render 'form', user: @user %>
-
-<%= link_to 'Back', users_path %>
+<%= render 'shared_partials/style' %>
+<%= verify_priviledges_users(session[:user_role], 'new')%>

@@ -1,3 +1,5 @@
+<%= render 'shared_partials/style' %>
+
 <%= form_with(model: user) do |form| %>
   <% if user.errors.any? %>
     <div id="error_explanation">
@@ -34,17 +36,17 @@
     <% else %>
       <div class="field">
         <%= form.label :role %>
-        <%= form.collection_select(:role_id, Role.all, :id, :role_description) %>
+        <%= form.collection_select(:role_id, Role.all, :id, :role_description, :prompt => 'Select Role') %>
       </div>
     <% end %>
   <% else %>
     <div class="field">
       <%= form.label :role %>
-      <%= form.collection_select(:role_id, Role.all, :id, :role_description) %>
+      <%= form.collection_select(:role_id, Role.all, :id, :role_description, :prompt => 'Select Role') %>
     </div>
   <% end %>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit class:"btn btn-primary a-primary"%>
   </div>
 <% end %>

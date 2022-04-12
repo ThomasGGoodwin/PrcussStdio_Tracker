@@ -1,0 +1,143 @@
+<%= render 'shared_partials/admin_nav'%>
+
+<div class="jumbotron", style="background-color:white">
+  <h1>Select Users to attend this event: <%= @event.name %></h1>
+  <div class="jumbotron">
+    <h2>Attending Users</h2>
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Instruments</th>
+            <th>Other Information</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @attending_rsvps.each do |rsvp| %>
+            <% user = User.find_by(email: rsvp.user_id) %>
+            <tr>
+              <td><%= user.first_name %><%= ' ' %><%= user.last_name %></td>
+              <td><%= user.email %></td>
+              <td><%= Instrument.where(id: rsvp.instrument_ids).pluck(:name).join(", ") %></td>
+              <td><%= rsvp.reason %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="jumbotron">
+  <h2>Invite details</h2>
+  <br>
+  <%= form_tag do |form| %>
+    <h4>Users</h4>
+    <%= hidden_field_tag(:send, false) %>
+    <%= select_tag(:selected_emails, options_from_collection_for_select(@attending_rsvps, 'user_id', 'user_id'), multiple: true, class: 'selectpicker show-tick') %>
+    <br>
+    <h4>Other email text (event details will automatically be included, put other specifics here)</h4>
+    <%#= text_area_tag(:message), :class='form-control' %>
+    <%= text_area_tag :message, "", class: 'form-control', rows:5 %>
+    <br>
+    <%= submit_tag('Update Email Details', :class=>'btn btn-primary a-primary')%>
+  <% end %>
+
+  <% if params[:selected_emails].present? %>
+    <br>
+    <div class="jumbotron" style="background-color:white"> 
+    <h2>Confirm Email Details</h2>
+    <h4>Selected Users</h4>
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% params[:selected_emails].each do |user_email| %>
+            <% user = User.find_by(email: user_email) %>
+            <tr>
+              <td><%= user.first_name + ' ' + user.last_name %></td>
+              <td><%= user.email %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <h4>Email Body</h4>
+    <% email_text = @event.email_string + "\n\n" + params[:message]%>
+    <%= safe_join(email_text.split("\n"), "<br />".html_safe) %>
+    <br> 
+    <% if params[:send] == "false" %>
+      <%= form_tag do |form| %>
+        <%= hidden_field_tag(:send, true) %>
+        <%= hidden_field_tag(:message, params[:message]) %>
+        <%= hidden_field_tag(:selected_emails_str, params[:selected_emails].join(", ")) %>
+        <br>
+        <%= submit_tag('Send email', :class=>'btn btn-primary a-primary') %>
+      <% end %>
+    <% else %>
+      <h3>Email sent!</h3>
+      <%= link_to "Back", root_url, class:'btn btn-secondary a-primary'%>
+    <% end %>
+    </div>
+    
+  <% end %>
+  </div>
+
+  <div class="jumbotron">
+  <h3>Not Attending Users</h3>
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>reason</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @not_attending_rsvps.each do |rsvp| %>
+          <% user = User.find_by(email: rsvp.user_id) %>
+          <tr>
+            <td><%= user.first_name + ' ' + user.last_name %></td>
+            <td><%= user.email %></td>
+            <td><%= rsvp.reason %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <br>
+
+  <h3>Users who did not RSVP</h3>
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @no_rsvp_users.each do |user| %>
+          <tr>
+            <td><%= user.first_name + ' ' + user.last_name %></td>
+            <td><%= user.email %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+  <%= link_to 'Back', root_url, class:"btn btn-secondary a-primary" %>
+  </div>

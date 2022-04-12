@@ -1,0 +1,9 @@
+<%= render 'shared_partials/admin_nav'%>
+
+<div class="jumbotron" style="background-color:white">
+<h1>New Role</h1>
+
+<%= render 'form', role: @role %>
+
+<%= link_to 'Back', roles_path, class:"btn btn-primary a-primary" %>
+</div>
