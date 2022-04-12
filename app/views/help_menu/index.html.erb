@@ -1,2 +1,7 @@
-<%= render 'member_view' %>
-<%= check_privilege(session[:user_role]) %>
+<%= render 'shared_partials/style'%>
+
+<%= check_navbar(session[:user_role]) %>
+<div style="padding-left: 1%">
+    <%= render 'member_view' %>
+    <%= check_privilege(session[:user_role]) %>
+</div>
