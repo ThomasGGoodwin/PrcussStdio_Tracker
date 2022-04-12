@@ -3,9 +3,8 @@
 
 <div class="jumbotron" style="background-color:white">
     <h1>Request to Join</h1>
-
     
-    <%= duplicate_user(current_admin.email)%>
+    <%= render 'pending_form', user: @user %>
 
     <%= link_to 'Back', root_url, class:"btn btn-secondary a-primary" %>
 </div>

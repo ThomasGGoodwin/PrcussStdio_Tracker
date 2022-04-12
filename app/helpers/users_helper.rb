@@ -16,14 +16,4 @@ module UsersHelper
         end 
     end
 
-    def duplicate_user(email)
-        content= ''
-        if User.exists?(email: email)
-            render '<p>You have already requested access</p>'
-        else
-            render 'pending_form', user: @user
-        end
-        content.html_safe
-    end
-
 end
