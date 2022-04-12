@@ -8,6 +8,7 @@ RSpec.describe 'Viewing the report with a created User', type: :feature do
 
    scenario 'valid inputs' do
     # Login to Google
+    admin_user
     visit '/admins/auth/google_oauth2'
 
     # create the role for user

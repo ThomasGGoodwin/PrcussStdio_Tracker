@@ -4,6 +4,7 @@ require 'rails_helper'
 RSpec.describe 'Creating an event', type: :feature do
   scenario 'valid inputs' do
     # Login to Google
+    admin_user
     visit '/admins/auth/google_oauth2'
 
     # Create Role

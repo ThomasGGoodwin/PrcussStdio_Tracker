@@ -12,7 +12,7 @@ RSpec.describe 'Creating a rsvp', type: :feature do
 
   scenario 'valid input: attending' do
     # Login to Google
-    user1
+    admin_user
     visit '/admins/auth/google_oauth2'
 
     # Find event to RSVP

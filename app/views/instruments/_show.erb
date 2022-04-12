@@ -1,0 +1,13 @@
+<%= render 'shared_partials/admin_nav' %>
+
+<div class="jumbotron" style="background-color:white">
+  <p id="notice"><%= notice %></p>
+
+  <p>
+    <strong>Name:</strong>
+    <%= @instrument.name %>
+  </p>
+
+  <%= link_to 'Edit', edit_instrument_path(@instrument), class:'btn btn-secondary a-primary' %>
+  <%= link_to 'Back', instruments_path, class:'btn btn-secondary a-primary' %>
+</div>

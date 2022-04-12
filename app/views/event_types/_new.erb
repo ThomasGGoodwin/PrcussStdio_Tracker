@@ -1,0 +1,11 @@
+<%= render 'shared_partials/admin_nav'%>
+
+<div class="jumbotron" id="includedContent" style="background-color:white">
+
+<h1>New Event Type</h1>
+<br>
+
+<%= render 'form', event_type: @event_type%>
+
+<%= link_to 'Back', event_types_path, class:"btn btn-secondary a-primary"%>
+</div>

@@ -4,6 +4,7 @@ require 'rails_helper'
 RSpec.describe 'Creating an instrument', type: :feature do
   scenario 'valid inputs' do
     # Login to Google
+    admin_user
     visit '/admins/auth/google_oauth2'
 
     # Create instrument
@@ -18,6 +19,7 @@ RSpec.describe 'Creating an instrument', type: :feature do
 
   scenario 'invalid inputs' do
     # Login to Google
+    admin_user
     visit '/admins/auth/google_oauth2'
 
     # Create instrument
@@ -37,6 +39,7 @@ RSpec.describe 'Editing an instrument', type: :feature do
     
   scenario 'valid inputs' do
     # Login to Google
+    admin_user
     visit '/admins/auth/google_oauth2'
     
     # Edit instrument
@@ -55,6 +58,7 @@ RSpec.describe 'Editing an instrument', type: :feature do
 
   scenario 'empty inputs' do
     # Login to Google
+    admin_user
     visit '/admins/auth/google_oauth2'
 
     # Edit instrument

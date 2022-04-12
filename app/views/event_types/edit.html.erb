@@ -1,6 +1,2 @@
-<h1>Editing Event Type</h1>
-
-<%= render 'form', event_type: @event_type %>
-
-<%= link_to 'Show', @event_type %> |
-<%= link_to 'Back', event_types_path %>
+<%= render 'shared_partials/style'%>
+<%= verify_creds_eventtypes(session[:user_role], 'edit')%>

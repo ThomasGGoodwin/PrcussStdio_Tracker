@@ -1,3 +1,5 @@
+<%= render 'shared_partials/style' %>
+
 <%= form_with(model: storage_key) do |form| %>
   <% if storage_key.errors.any? %>
     <div id="error_explanation">
@@ -17,6 +19,6 @@
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit class:'btn btn-primary a-primary' %>
   </div>
 <% end %>

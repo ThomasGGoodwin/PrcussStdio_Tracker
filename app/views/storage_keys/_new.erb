@@ -1,0 +1,9 @@
+<%= render 'shared_partials/admin_nav'%>
+
+<div class="jumbotron", style="background-color:white">
+    <h1>Assign Storage Key</h1>
+
+    <%= render 'form', storage_key: @storage_key %>
+
+    <%= link_to 'Back', storage_keys_path, class:'btn btn-secondary a-primary' %>
+</div>

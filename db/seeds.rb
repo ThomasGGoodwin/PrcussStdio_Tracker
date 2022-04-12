@@ -8,6 +8,7 @@
 
 Role.create(role_description: 'Admin')
 Role.create(role_description: 'Member')
+Role.create(role_description: 'Pending')
 
 User.create(first_name: 'Luke', last_name: 'Yocum', email: 'yocuml19@tamu.edu', role_id: 1)
 User.create(first_name: 'Thomas', last_name: 'Goodwin', email: 'thomasgoodwin@tamu.edu', role_id: 1)

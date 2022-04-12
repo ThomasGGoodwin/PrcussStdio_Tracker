@@ -1,0 +1,26 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-secondary">
+    <button class="btn btn-default navbar-btn"><%= link_to 'Percussion Studio - Admin', root_url, class:'navbar-brand white' %></button>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <button class="btn btn-default navbar-btn"><%= link_to 'Event Types', event_types_path, class:'nav-link white' %></button>
+            </li>
+            <li class="nav-item">
+                <button type="button" class="btn btn-default navbar-btn"><%= link_to 'Storage Keys', storage_keys_path, class: 'nav-link white'%>
+            </li>
+            <li class="nav-item">
+                <button type="button" class="btn btn-default navbar-btn"><%= link_to 'Users', users_path, class: 'nav-link white'%></button>
+            </li>
+            <li class="nav-item">
+                <button type="button" class="btn btn-default navbar-btn"><%= link_to 'RSVP', rsvps_path, class: 'nav-link white'%></button>
+            </li>
+            <li class="nav-item">
+                <button type="button" class="btn btn-default navbar-btn"><%= link_to 'Instruments', instruments_path, class: 'nav-link white'%></button>
+            </li>
+        </ul>
+    </div>
+</nav>
