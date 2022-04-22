@@ -131,8 +131,4 @@ Rails.application.configure do
     :authentication       => "plain",
     :enable_starttls_auto => true
   }
-
-  # Google OAuth Keys
-  ENV['GOOGLE_OAUTH_CLIENT_ID']  = '668612256365-uq3g4qq4e6c98hmo0gbj33mkajiv7cvm.apps.googleusercontent.com'
-  ENV['GOOGLE_OAUTH_CLIENT_SECRET'] = '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'
 end
